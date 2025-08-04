@@ -13,7 +13,7 @@ body {
 }
 
 /* グリッチタイトル用フォント */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka+One:wght@400&family=Bungee&family=Black+Ops+One:wght@400&family=Orbitron:wght@900&family=Chakra+Petch:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One:wght@400&family=Orbitron:wght@900&family=Chakra+Petch:wght@700&family=Fredoka+One:wght@400&family=Bungee&display=swap');
 
 /* ヘッダー */
 .header {
@@ -30,9 +30,9 @@ body {
 
 .logo .plottron-comic-glitch {
     position: relative;
-    font-family: 'Black Ops One', 'Orbitron', 'Chakra Petch', 'Bungee', Impact, sans-serif;
-    font-size: 2.5rem;
-    font-weight: 900;
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.8rem;
+    font-weight: 400;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     line-height: 0.9;
@@ -72,7 +72,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Black Ops One', 'Orbitron', 'Chakra Petch', 'Bungee', Impact, sans-serif;
+    font-family: 'Black Ops One', cursive;
     font-size: inherit;
     font-weight: inherit;
     letter-spacing: inherit;
@@ -368,7 +368,7 @@ body {
     }
     
     .logo .plottron-comic-glitch {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
         letter-spacing: 0.03em;
         
         text-shadow: 
@@ -417,7 +417,7 @@ body {
     }
     
     .logo .plottron-comic-glitch {
-        font-size: 2rem;
+        font-size: 2.2rem;
         letter-spacing: 0.02em;
     }
 }
