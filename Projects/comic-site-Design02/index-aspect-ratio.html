@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLOTTRON - Comic Hub (Aspect Ratio)</title>
+    <style>
+        /* リセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a855f7;
+            text-transform: uppercase;
+        }
+
+        .navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #a855f7;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            width: 100%;
+            padding: 0.5rem;
+        }
+
+        /* マザイクグリッドコンテナ - 画像の縦横比を活かす */
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 100px;
+            gap: 6px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 各画像のサイズを縦横比に基づいて設定 */
+        .mosaic-item {
+            position: relative;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .mosaic-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 画像の配置とサイズ - 実際の縦横比に基づく */
+        
+        /* 横長画像 (16:9系) */
+        .item-1 { grid-column: span 4; grid-row: span 2; } /* main01.png - 横長 */
+        .item-2 { grid-column: span 4; grid-row: span 2; } /* main02.png - 横長 */
+        .item-4 { grid-column: span 5; grid-row: span 2; } /* main04.png - 横長 */
+        .item-8 { grid-column: span 6; grid-row: span 3; } /* main08.png - マンガページ（横長） */
+        .item-10 { grid-column: span 4; grid-row: span 2; } /* main10.jpg - 横長 */
+        .item-12 { grid-column: span 4; grid-row: span 6; } /* main12.jpg - 縦長アート */
+
+        /* 縦長画像 */
+        .item-3 { grid-column: span 4; grid-row: span 6; } /* main03.png - 縦長キャラクター */
+        .item-5 { grid-column: span 3; grid-row: span 4; } /* main05.png - 縦長マンガ */
+        .item-13 { grid-column: span 4; grid-row: span 3; } /* main13.jpg - 正方形に近い */
+
+        /* 正方形・小さめ画像 */
+        .item-6 { grid-column: span 3; grid-row: span 2; } /* main06.png */
+        .item-7 { grid-column: span 3; grid-row: span 2; } /* main07.jpg */
+        .item-9 { grid-column: span 3; grid-row: span 2; } /* main09.png */
+        .item-11 { grid-column: span 4; grid-row: span 2; } /* main11.jpg */
+
+        /* 画像スタイル - 縦横比を保持 */
+        .mosaic-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 縦横比を保持して全体を表示 */
+            background-color: #ffffff;
+            border-radius: 4px;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mosaic-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .mosaic-item:nth-child(1) { animation-delay: 0.1s; }
+        .mosaic-item:nth-child(2) { animation-delay: 0.15s; }
+        .mosaic-item:nth-child(3) { animation-delay: 0.2s; }
+        .mosaic-item:nth-child(4) { animation-delay: 0.25s; }
+        .mosaic-item:nth-child(5) { animation-delay: 0.3s; }
+        .mosaic-item:nth-child(6) { animation-delay: 0.35s; }
+        .mosaic-item:nth-child(7) { animation-delay: 0.4s; }
+        .mosaic-item:nth-child(8) { animation-delay: 0.45s; }
+        .mosaic-item:nth-child(9) { animation-delay: 0.5s; }
+        .mosaic-item:nth-child(10) { animation-delay: 0.55s; }
+        .mosaic-item:nth-child(11) { animation-delay: 0.6s; }
+        .mosaic-item:nth-child(12) { animation-delay: 0.65s; }
+        .mosaic-item:nth-child(13) { animation-delay: 0.7s; }
+
+        /* レスポンシブ */
+        @media (max-width: 1024px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(8, 1fr);
+                grid-auto-rows: 80px;
+            }
+            
+            .item-1, .item-2, .item-4, .item-10, .item-11 { 
+                grid-column: span 4; grid-row: span 2; 
+            }
+            .item-3, .item-12 { 
+                grid-column: span 4; grid-row: span 4; 
+            }
+            .item-5 { 
+                grid-column: span 3; grid-row: span 3; 
+            }
+            .item-6, .item-7, .item-9 { 
+                grid-column: span 2; grid-row: span 2; 
+            }
+            .item-8 { 
+                grid-column: span 6; grid-row: span 3; 
+            }
+            .item-13 { 
+                grid-column: span 4; grid-row: span 2; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .mosaic-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 60px;
+                gap: 4px;
+            }
+            
+            .item-1, .item-2, .item-4, .item-10, .item-11 { 
+                grid-column: span 2; grid-row: span 2; 
+            }
+            .item-3, .item-12 { 
+                grid-column: span 2; grid-row: span 3; 
+            }
+            .item-5, .item-8 { 
+                grid-column: span 4; grid-row: span 3; 
+            }
+            .item-6, .item-7, .item-9, .item-13 { 
+                grid-column: span 2; grid-row: span 2; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 80px;
+            }
+            
+            .mosaic-item {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+            
+            .item-3, .item-5, .item-12 {
+                grid-row: span 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-title">PLOTTRON</div>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#creators">CREATORS</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="mosaic-grid">
+            <div class="mosaic-item item-1">
+                <img src="images/main01.png" alt="Comic 1" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-2">
+                <img src="images/main02.png" alt="Comic 2" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-3">
+                <img src="images/main03.png" alt="Comic 3" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-4">
+                <img src="images/main04.png" alt="Comic 4" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-5">
+                <img src="images/main05.png" alt="Comic 5" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-6">
+                <img src="images/main06.png" alt="Comic 6" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-7">
+                <img src="images/main07.jpg" alt="Comic 7" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-8">
+                <img src="images/main08.png" alt="Comic 8" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-9">
+                <img src="images/main09.png" alt="Comic 9" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-10">
+                <img src="images/main10.jpg" alt="Comic 10" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-11">
+                <img src="images/main11.jpg" alt="Comic 11" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-12">
+                <img src="images/main12.jpg" alt="Comic 12" class="mosaic-image">
+            </div>
+
+            <div class="mosaic-item item-13">
+                <img src="images/main13.jpg" alt="Comic 13" class="mosaic-image">
+            </div>
+        </div>
+    </main>
+</body>
+</html>

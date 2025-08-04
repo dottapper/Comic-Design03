@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@900&family=Quicksand:wght@700&display=swap');
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+}
+
+.plottron-bubble {
+  position: relative;
+  font-family: 'Fredoka One', 'Nunito', cursive;
+  font-size: 6vw;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  z-index: 1;
+  user-select: none;
+  cursor: pointer;
+  
+  /* バブル風グラデーション */
+  background: linear-gradient(45deg, 
+    #8b5cf6 0%, 
+    #a855f7 25%, 
+    #9333ea 50%, 
+    #7c3aed 75%, 
+    #6d28d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* 3D効果とシャドウ */
+  filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.4))
+          drop-shadow(0 8px 24px rgba(139, 92, 246, 0.2));
+  
+  /* テキストシャドウで立体感 */
+  text-shadow: 
+    2px 2px 0px #7c3aed,
+    4px 4px 0px #6d28d9,
+    6px 6px 0px #5b21b6,
+    8px 8px 16px rgba(91, 33, 182, 0.3);
+}
+
+/* 個別文字のスタイリング */
+.plottron-bubble .letter {
+  display: inline-block;
+  position: relative;
+}
+
+/* 黄色いアクセントドット */
+.plottron-bubble .letter::after {
+  content: '';
+  position: absolute;
+  width: 0.2em;
+  height: 0.2em;
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 8px rgba(251, 191, 36, 0.6),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 特定の文字にドットを配置 */
+.plottron-bubble .letter:nth-child(2)::after { /* L */
+  top: 0.1em;
+  right: 0.1em;
+  opacity: 1;
+}
+
+.plottron-bubble .letter:nth-child(4)::after { /* T */
+  top: 0.15em;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+}
+
+.plottron-bubble .letter:nth-child(6)::after { /* R */
+  top: 0.2em;
+  right: 0.2em;
+  opacity: 1;
+}
+
+.plottron-bubble .letter:nth-child(7)::after { /* O */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+/* ホバー効果 */
+.plottron-bubble:hover {
+  animation: bubbleBounce 0.6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 6px 16px rgba(139, 92, 246, 0.6))
+          drop-shadow(0 12px 32px rgba(139, 92, 246, 0.3));
+}
+
+.plottron-bubble:hover .letter::after {
+  opacity: 1;
+  animation: dotGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes bubbleBounce {
+  0% { 
+    transform: scale(1) translateY(0px); 
+  }
+  100% { 
+    transform: scale(1.02) translateY(-3px); 
+  }
+}
+
+@keyframes dotGlow {
+  0% { 
+    box-shadow: 
+      0 0 8px rgba(251, 191, 36, 0.6),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 0 16px rgba(251, 191, 36, 0.9),
+      0 0 24px rgba(251, 191, 36, 0.6),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* 個別文字のアニメーション */
+.plottron-bubble:hover .letter {
+  animation: letterWiggle 0.8s ease-in-out infinite;
+}
+
+.plottron-bubble .letter:nth-child(1) { animation-delay: 0s; }
+.plottron-bubble .letter:nth-child(2) { animation-delay: 0.1s; }
+.plottron-bubble .letter:nth-child(3) { animation-delay: 0.2s; }
+.plottron-bubble .letter:nth-child(4) { animation-delay: 0.3s; }
+.plottron-bubble .letter:nth-child(5) { animation-delay: 0.4s; }
+.plottron-bubble .letter:nth-child(6) { animation-delay: 0.5s; }
+.plottron-bubble .letter:nth-child(7) { animation-delay: 0.6s; }
+.plottron-bubble .letter:nth-child(8) { animation-delay: 0.7s; }
+
+@keyframes letterWiggle {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-2px) rotate(0.5deg); 
+  }
+  75% { 
+    transform: translateY(2px) rotate(-0.5deg); 
+  }
+}
+
+/* 背景にバブル効果 */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: backgroundFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundFloat {
+  0% { 
+    transform: translateY(0px); 
+    opacity: 0.5; 
+  }
+  100% { 
+    transform: translateY(-10px); 
+    opacity: 0.8; 
+  }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .plottron-bubble {
+    font-size: 8vw;
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 480px) {
+  .plottron-bubble {
+    font-size: 12vw;
+    letter-spacing: 0.02em;
+  }
+}

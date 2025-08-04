@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLOTTRON - Comic Hub</title>
+    <style>
+        /* リセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* グリッチロゴ - スコープ限定で他に干渉しない */
+        .plottron-glitch-logo {
+            position: relative;
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 1;
+            cursor: pointer;
+            color: #a855f7;
+            text-shadow: 
+                -2px -2px 0px #000,
+                2px -2px 0px #000,
+                -2px 2px 0px #000,
+                2px 2px 0px #000,
+                0 0 10px rgba(168, 85, 247, 0.5);
+            user-select: none;
+        }
+
+        .plottron-glitch-logo::before,
+        .plottron-glitch-logo::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            letter-spacing: inherit;
+            text-transform: inherit;
+            pointer-events: none;
+        }
+
+        .plottron-glitch-logo::before {
+            color: #fbbf24;
+            text-shadow: 
+                -2px -2px 0px #000,
+                2px -2px 0px #000,
+                -2px 2px 0px #000,
+                2px 2px 0px #000,
+                0 0 10px rgba(251, 191, 36, 0.5);
+            animation: plottron-glitch1 2.5s infinite linear;
+            opacity: 0;
+        }
+
+        .plottron-glitch-logo::after {
+            color: #06d6a0;
+            text-shadow: 
+                -2px -2px 0px #000,
+                2px -2px 0px #000,
+                -2px 2px 0px #000,
+                2px 2px 0px #000,
+                0 0 10px rgba(6, 214, 160, 0.5);
+            animation: plottron-glitch2 2.3s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes plottron-glitch1 {
+            0%, 90% { 
+                opacity: 0; 
+                transform: translateX(0px); 
+            }
+            91% { 
+                opacity: 0.8; 
+                transform: translateX(-3px); 
+            }
+            92% { 
+                opacity: 0.9; 
+                transform: translateX(2px); 
+            }
+            93% { 
+                opacity: 0.7; 
+                transform: translateX(-1px); 
+            }
+            94% { 
+                opacity: 0.8; 
+                transform: translateX(3px); 
+            }
+            95%, 100% { 
+                opacity: 0; 
+                transform: translateX(0px); 
+            }
+        }
+
+        @keyframes plottron-glitch2 {
+            0%, 85% { 
+                opacity: 0; 
+                transform: translateX(0px); 
+            }
+            86% { 
+                opacity: 0.7; 
+                transform: translateX(2px); 
+            }
+            87% { 
+                opacity: 0.9; 
+                transform: translateX(-2px); 
+            }
+            88% { 
+                opacity: 0.6; 
+                transform: translateX(1px); 
+            }
+            89% { 
+                opacity: 0.8; 
+                transform: translateX(-3px); 
+            }
+            90%, 100% { 
+                opacity: 0; 
+                transform: translateX(0px); 
+            }
+        }
+
+        .plottron-glitch-logo:hover::before {
+            animation: plottron-glitch1 0.15s infinite linear;
+            opacity: 0.9;
+        }
+
+        .plottron-glitch-logo:hover::after {
+            animation: plottron-glitch2 0.18s infinite linear;
+            opacity: 0.9;
+        }
+
+        .navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #a855f7;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            width: 100%;
+            padding: 1rem;
+        }
+
+        /* 画像表示テスト用の単純なグリッド */
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 8px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .test-item {
+            background-color: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .test-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .test-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background-color: #ffffff;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .test-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .test-item:nth-child(1) { animation-delay: 0.1s; }
+        .test-item:nth-child(2) { animation-delay: 0.15s; }
+        .test-item:nth-child(3) { animation-delay: 0.2s; }
+        .test-item:nth-child(4) { animation-delay: 0.25s; }
+        .test-item:nth-child(5) { animation-delay: 0.3s; }
+        .test-item:nth-child(6) { animation-delay: 0.35s; }
+        .test-item:nth-child(7) { animation-delay: 0.4s; }
+        .test-item:nth-child(8) { animation-delay: 0.45s; }
+        .test-item:nth-child(9) { animation-delay: 0.5s; }
+        .test-item:nth-child(10) { animation-delay: 0.55s; }
+        .test-item:nth-child(11) { animation-delay: 0.6s; }
+        .test-item:nth-child(12) { animation-delay: 0.65s; }
+        .test-item:nth-child(13) { animation-delay: 0.7s; }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .plottron-glitch-logo {
+                font-size: 2rem;
+            }
+            
+            .test-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .test-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 4px;
+            }
+            
+            .plottron-glitch-logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="plottron-glitch-logo" data-text="PLOTTRON">PLOTTRON</div>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#creators">CREATORS</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="test-grid">
+            <div class="test-item">
+                <img src="images/main01.png" alt="Comic 1" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main02.png" alt="Comic 2" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main03.png" alt="Comic 3" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main04.png" alt="Comic 4" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main05.png" alt="Comic 5" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main06.png" alt="Comic 6" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main07.jpg" alt="Comic 7" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main08.png" alt="Comic 8" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main09.png" alt="Comic 9" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main10.jpg" alt="Comic 10" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main11.jpg" alt="Comic 11" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main12.jpg" alt="Comic 12" class="test-image">
+            </div>
+
+            <div class="test-item">
+                <img src="images/main13.jpg" alt="Comic 13" class="test-image">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
