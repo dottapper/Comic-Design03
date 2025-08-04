@@ -7,122 +7,166 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         hideLoadingOverlay();
     }, 3000);
-    const logo = document.querySelector('.plottron-comic-glitch');
-    const gridItems = document.querySelectorAll('.grid-item');
-    const navigationLinks = document.querySelectorAll('.navigation a');
-    const storyPanels = document.querySelectorAll('.story-panel');
     
-    // パーティクルエフェクトの初期化
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: ['#a855f7', '#06d6a0', '#fbbf24']
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#a855f7',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'repulse'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 400,
-                        line_linked: {
-                            opacity: 1
+    const logo = document.querySelector('.plottron-logo');
+    const gridItems = document.querySelectorAll('.grid-item');
+    const navigationLinks = document.querySelectorAll('.nav-link');
+    const storyPanels = document.querySelectorAll('.story-panel');
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    
+    // パーティクルエフェクトの初期化（エラーハンドリング付き）
+    try {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
                         }
                     },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                        speed: 3
+                    color: {
+                        value: ['#a855f7', '#06d6a0', '#fbbf24']
                     },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        }
                     },
-                    push: {
-                        particles_nb: 4
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        anim: {
+                            enable: false,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
                     },
-                    remove: {
-                        particles_nb: 2
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: {
+                            enable: false,
+                            speed: 40,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: '#a855f7',
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
                     }
-                }
-            },
-            retina_detect: true
-        });
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: 'repulse'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 400,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+        } else {
+            console.warn('ParticlesJS not loaded. Skipping particle effects.');
+        }
+    } catch (error) {
+        console.error('Error initializing particles:', error);
     }
     
     // ロゴクリック時のホームページへの移動
-    logo.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (logo) {
+        logo.addEventListener('click', function() {
+            // グリッチエフェクトを追加
+            this.classList.add('glitch-active');
+            setTimeout(() => {
+                this.classList.remove('glitch-active');
+            }, 200);
+            
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // CTAボタンイベント
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // ボタンアニメーション
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // ボタンの種類に応じたアクション
+            if (this.classList.contains('primary')) {
+                // Explore Works - グリッドセクションにスクロール
+                const gridSection = document.querySelector('.grid-section');
+                if (gridSection) {
+                    gridSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (this.classList.contains('secondary')) {
+                // Join Community - アクセラレーターセクションにスクロール
+                const acceleratorSection = document.querySelector('.accelerator-section');
+                if (acceleratorSection) {
+                    acceleratorSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         });
     });
     
@@ -179,8 +223,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // クリック時のストーリーアクセラレーション
         panel.addEventListener('click', function() {
-            const storyType = this.closest('.grid-item').dataset.story;
-            accelerateStory(storyType);
+            const gridItem = this.closest('.grid-item');
+            if (gridItem) {
+                const storyType = gridItem.dataset.story;
+                accelerateStory(storyType);
+            }
         });
     });
     
@@ -199,36 +246,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 画像の遅延読み込み
     const images = document.querySelectorAll('.comic-image');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.5s ease-in';
-                
-                // 画像が読み込まれたらフェードイン
-                img.onload = function() {
-                    img.style.opacity = '1';
-                };
-                
-                observer.unobserve(img);
-            }
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s ease-in';
+                    
+                    // 画像が読み込まれたらフェードイン
+                    img.onload = function() {
+                        img.style.opacity = '1';
+                    };
+                    
+                    observer.unobserve(img);
+                }
+            });
         });
-    });
-    
-    images.forEach(img => {
-        imageObserver.observe(img);
-    });
+        
+        images.forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
     
     // スクロール時のヘッダー背景変更
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-            header.style.backdropFilter = 'blur(20px)';
-        } else {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-            header.style.backdropFilter = 'blur(20px)';
+        if (header) {
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                header.style.backdropFilter = 'blur(20px)';
+            }
         }
     });
     
@@ -287,15 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('blur', function() {
             this.style.outline = 'none';
         });
-    });
-    
-    // ローディング完了後のアニメーション
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            gridItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-            });
-        }, 100);
     });
     
     // エラーハンドリング
@@ -533,6 +575,12 @@ function initLoadingAnimation() {
     const loadingPercentage = document.querySelector('.loading-percentage');
     const electronNoise = document.querySelector('.electron-noise');
     
+    // 要素が存在するかチェック
+    if (!loadingOverlay || !loadingProgress || !loadingPercentage) {
+        console.warn('Loading elements not found');
+        return;
+    }
+    
     let progress = 0;
     const targetProgress = 90;
     const finalProgress = 100;
@@ -550,10 +598,12 @@ function initLoadingAnimation() {
                 updateProgress();
                 
                 // ELECTRON NOISEエフェクト
-                electronNoise.style.opacity = '0.5';
-                setTimeout(() => {
-                    electronNoise.style.opacity = '0';
-                }, 200);
+                if (electronNoise) {
+                    electronNoise.style.opacity = '0.5';
+                    setTimeout(() => {
+                        electronNoise.style.opacity = '0';
+                    }, 200);
+                }
                 
                 // 瞬時に100%到達
                 setTimeout(() => {
@@ -566,28 +616,32 @@ function initLoadingAnimation() {
     }, 50);
     
     function updateProgress() {
-        loadingProgress.style.width = `${progress}%`;
-        loadingPercentage.textContent = `${Math.floor(progress)}%`;
-        
-        // グリッチエフェクト
-        if (Math.random() < 0.1) {
-            loadingPercentage.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
-            setTimeout(() => {
-                loadingPercentage.style.transform = 'translateX(0)';
-            }, 50);
+        if (loadingProgress && loadingPercentage) {
+            loadingProgress.style.width = `${progress}%`;
+            loadingPercentage.textContent = `${Math.floor(progress)}%`;
+            
+            // グリッチエフェクト
+            if (Math.random() < 0.1) {
+                loadingPercentage.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+                setTimeout(() => {
+                    loadingPercentage.style.transform = 'translateX(0)';
+                }, 50);
+            }
         }
     }
 }
 
 function hideLoadingOverlay() {
     const loadingOverlay = document.getElementById('loading-overlay');
-    loadingOverlay.classList.add('hidden');
-    
-    // ローディング完了後のエフェクト
-    setTimeout(() => {
-        loadingOverlay.style.display = 'none';
-        initMainAnimations();
-    }, 500);
+    if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+        
+        // ローディング完了後のエフェクト
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            initMainAnimations();
+        }, 500);
+    }
 }
 
 function initMainAnimations() {
