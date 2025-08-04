@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLOTTRON - Plot Accelerator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="title/plottron-title-comic-glitch copy.css">
 </head>
 <body>
     <!-- パーティクル背景 -->
@@ -26,19 +26,35 @@
             </div>
             <nav class="navigation">
                 <ul>
-                    <li><a href="#creators" class="nav-link">CREATORS</a></li>
                     <li><a href="#about" class="nav-link">ABOUT</a></li>
-                    <li><a href="#contact" class="nav-link">CONTACT</a></li>
+                    <li><a href="#works" class="nav-link">WORKS</a></li>
+                    <li><a href="#lab" class="nav-link">LAB</a></li>
+                    <li><a href="#archive" class="nav-link">ARCHIVE</a></li>
+                    <li><a href="#community" class="nav-link">COMMUNITY</a></li>
+                    <li><a href="#store" class="nav-link">STORE</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="main-content">
+        <!-- ローディングオーバーレイ -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-container">
+                <div class="loading-text">Plot Accelerator</div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <div class="loading-percentage">0%</div>
+                <div class="electron-noise"></div>
+            </div>
+        </div>
+
         <!-- コンセプトメッセージ -->
         <div class="concept-message">
             <h1 class="concept-title">Where Stories Accelerate.</h1>
             <p class="concept-subtitle">物語が加速する場所</p>
+            <div class="glitch-subtitle" data-text="Even Glitches Create Light.">Even Glitches Create Light.</div>
             <div class="charge-indicator">
                 <div class="charge-bar"></div>
                 <span class="charge-text">Plot Accelerator Ready</span>
@@ -46,8 +62,6 @@
         </div>
 
         <div class="grid-container">
-            <!-- 1段目: 3つのパネル -->
-            <!-- 左上: グリッチ効果のある少女のプロフィール -->
             <div class="grid-item item-1" data-story="glitch-girl">
                 <div class="comic-panel story-panel">
                     <div class="panel-overlay">
@@ -55,15 +69,18 @@
                         <div class="story-spark"></div>
                     </div>
                     <img src="images/main01.png" alt="Girl profile with glitch effect" class="comic-image">
-                    <div class="date-overlay">2025.4.17</div>
                     <div class="story-info">
                         <h3>Glitch Reality</h3>
-                        <p>現実の境界を超える物語</p>
+                        <p>現実の境界を超える物語。完璧ではない美しさの中に、真の輝きを見つけ出す旅。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">Glitch Art</div>
+                            <div class="story-tag">Digital</div>
+                            <div class="story-date">2025.4.17 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 中央上: カラーイラストの少女 -->
             <div class="grid-item item-2" data-story="color-dream">
                 <div class="comic-panel story-panel">
                     <div class="panel-overlay">
@@ -71,15 +88,18 @@
                         <div class="story-spark"></div>
                     </div>
                     <img src="images/main02.png" alt="Color illustration of girl" class="comic-image">
-                    <div class="date-overlay">2025.5.22</div>
                     <div class="story-info">
                         <h3>Dream Palette</h3>
-                        <p>色が紡ぐ夢の物語</p>
+                        <p>色が紡ぐ夢の物語。鮮やかな彩度の向こう側に広がる、想像を超えた世界観。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">Colorful</div>
+                            <div class="story-tag">Dream</div>
+                            <div class="story-date">2025.5.22 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 右上: ゴシックロリータ少女（縦長） -->
             <div class="grid-item item-3" data-story="gothic-lolita">
                 <div class="comic-panel story-panel vertical-panel">
                     <div class="panel-overlay">
@@ -93,13 +113,16 @@
                     </div>
                     <div class="story-info">
                         <h3>Gothic Elegance</h3>
-                        <p>優雅な闇の物語</p>
+                        <p>優雅な闇の物語。ロリータファッションの奥深い美学と、誤解されがちな文化への理解。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">Gothic</div>
+                            <div class="story-tag">Fashion</div>
+                            <div class="story-date">2025.3.10 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2段目: 左下パネル + 中央下の横長パネル -->
-            <!-- 左下: マンガパネル -->
             <div class="grid-item item-4" data-story="manga-life">
                 <div class="comic-panel story-panel">
                     <div class="panel-overlay">
@@ -110,12 +133,16 @@
                     <div class="twitter-badge">X(Twitter) comic making</div>
                     <div class="story-info">
                         <h3>Life in Panels</h3>
-                        <p>日常を切り取る物語</p>
+                        <p>日常を切り取る物語。SNSで生まれる新しいコミック表現の可能性を探る。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">SNS Comic</div>
+                            <div class="story-tag">Daily Life</div>
+                            <div class="story-date">2025.6.05 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 中央下: 複数パネルのマンガ（2列分を占める） -->
             <div class="grid-item item-5" data-story="classroom-tales">
                 <div class="comic-panel story-panel vertical-panel multi-panel">
                     <div class="panel-overlay">
@@ -142,13 +169,16 @@
                     </div>
                     <div class="story-info">
                         <h3>Classroom Chronicles</h3>
-                        <p>教室で紡がれる物語</p>
+                        <p>教室で紡がれる物語。青春の輝きと影を丁寧に描いた、心に響く学園ドラマ。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">School</div>
+                            <div class="story-tag">Youth</div>
+                            <div class="story-date">2025.2.14 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3段目: 左下の大きな縦長パネル + 右下の横長パネル -->
-            <!-- 左下: 本の表紙（大きな縦長） -->
             <div class="grid-item item-6" data-story="mystery-book">
                 <div class="comic-panel story-panel book-cover">
                     <div class="panel-overlay">
@@ -167,12 +197,16 @@
                     </div>
                     <div class="story-info">
                         <h3>Mystery Dictionary</h3>
-                        <p>謎に満ちた言葉の物語</p>
+                        <p>謎に満ちた言葉の物語。江戸川乱歩の世界観を現代に蘇らせる、知的好奇心を刺激する一冊。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">Mystery</div>
+                            <div class="story-tag">Literature</div>
+                            <div class="story-date">2025.1.20 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 右下: 複数パネルのマンガ（2列分を占める） -->
             <div class="grid-item item-7" data-story="morning-tales">
                 <div class="comic-panel story-panel vertical-panel multi-panel">
                     <div class="panel-overlay">
@@ -199,7 +233,12 @@
                     </div>
                     <div class="story-info">
                         <h3>Morning Stories</h3>
-                        <p>朝に始まる物語</p>
+                        <p>朝に始まる物語。季節の移ろいと共に描かれる、何気ない日常の美しさ。</p>
+                        <div class="story-meta">
+                            <div class="story-tag">Slice of Life</div>
+                            <div class="story-tag">Seasonal</div>
+                            <div class="story-date">2025.6.15 Released</div>
+                        </div>
                     </div>
                 </div>
             </div>

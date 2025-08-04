@@ -1,5 +1,12 @@
 // DOM要素の取得
 document.addEventListener('DOMContentLoaded', function() {
+    // ローディングアニメーション
+    initLoadingAnimation();
+    
+    // 3秒後にメインコンテンツを表示
+    setTimeout(() => {
+        hideLoadingOverlay();
+    }, 3000);
     const logo = document.querySelector('.plottron-comic-glitch');
     const gridItems = document.querySelectorAll('.grid-item');
     const navigationLinks = document.querySelectorAll('.navigation a');
@@ -258,20 +265,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // パフォーマンス最適化：リサイズ時のデバウンス
-    let resizeTimeout;
+    // リサイズ時のグリッド再計算
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            // グリッドの再計算が必要な場合の処理
-            const gridContainer = document.querySelector('.grid-container');
-            if (gridContainer) {
-                gridContainer.style.display = 'none';
-                setTimeout(() => {
-                    gridContainer.style.display = 'grid';
-                }, 10);
-            }
-        }, 250);
+        const gridContainer = document.querySelector('.grid-container');
+        if (gridContainer) {
+            gridContainer.style.display = 'none';
+            setTimeout(() => {
+                gridContainer.style.display = 'grid';
+            }, 10);
+        }
     });
     
     // アクセシビリティ向上：フォーカス管理
@@ -287,11 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ローディング状態の管理
+    // ローディング完了後のアニメーション
     window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-        
-        // ローディング完了後のアニメーション
         setTimeout(() => {
             gridItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.1}s`;
@@ -527,25 +526,92 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ユーティリティ関数
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+// ローディングアニメーション関数
+function initLoadingAnimation() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const loadingProgress = document.querySelector('.loading-progress');
+    const loadingPercentage = document.querySelector('.loading-percentage');
+    const electronNoise = document.querySelector('.electron-noise');
+    
+    let progress = 0;
+    const targetProgress = 90;
+    const finalProgress = 100;
+    
+    // 90%まで進む
+    const interval1 = setInterval(() => {
+        progress += Math.random() * 3 + 1;
+        if (progress >= targetProgress) {
+            progress = targetProgress;
+            clearInterval(interval1);
+            
+            // 88%に戻る（Plot Acceleratorコンセプト）
+            setTimeout(() => {
+                progress = 88;
+                updateProgress();
+                
+                // ELECTRON NOISEエフェクト
+                electronNoise.style.opacity = '0.5';
+                setTimeout(() => {
+                    electronNoise.style.opacity = '0';
+                }, 200);
+                
+                // 瞬時に100%到達
+                setTimeout(() => {
+                    progress = finalProgress;
+                    updateProgress();
+                }, 500);
+            }, 800);
+        }
+        updateProgress();
+    }, 50);
+    
+    function updateProgress() {
+        loadingProgress.style.width = `${progress}%`;
+        loadingPercentage.textContent = `${Math.floor(progress)}%`;
+        
+        // グリッチエフェクト
+        if (Math.random() < 0.1) {
+            loadingPercentage.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                loadingPercentage.style.transform = 'translateX(0)';
+            }, 50);
+        }
+    }
 }
 
-// パフォーマンス監視
-if ('performance' in window) {
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            console.log('ページ読み込み時間:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-        }, 0);
+function hideLoadingOverlay() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    loadingOverlay.classList.add('hidden');
+    
+    // ローディング完了後のエフェクト
+    setTimeout(() => {
+        loadingOverlay.style.display = 'none';
+        initMainAnimations();
+    }, 500);
+}
+
+function initMainAnimations() {
+    // メインコンテンツのアニメーション初期化
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.classList.add('fade-in-up');
     });
-} 
+    
+    // グリッチテキストアニメーション
+    const glitchElements = document.querySelectorAll('.glitch-subtitle');
+    glitchElements.forEach(element => {
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                element.classList.add('glitch-active');
+                setTimeout(() => {
+                    element.classList.remove('glitch-active');
+                }, 200);
+            }
+        }, 2000);
+    });
+}
+
+
+
+ 
