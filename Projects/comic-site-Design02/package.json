@@ -1,0 +1,9 @@
+{
+  "name": "comic-site-design02",
+  "version": "1.0.0",
+  "description": "Static comic site",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build required'"
+  }
+} 
