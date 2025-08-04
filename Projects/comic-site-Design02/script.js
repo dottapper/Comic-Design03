@@ -189,20 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const storyPanel = item.querySelector('.story-panel');
         
         if (storyPanel) {
-            // ホバー時のエフェクト
-            storyPanel.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-                this.style.zIndex = '20';
-                
-                // パーティクルエフェクトの追加
-                createParticleBurst(this);
-            });
-            
-            storyPanel.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-                this.style.zIndex = '1';
-            });
-            
             // クリック時のストーリーアクセラレーション
             storyPanel.addEventListener('click', function() {
                 const gridItem = this.closest('.grid-item');
@@ -213,14 +199,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // グリッドアイテム全体のホバーエフェクト
+        // グリッドアイテム全体のホバーエフェクト（統一）
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-            this.style.zIndex = '10';
+            this.style.transform = 'scale(1.12) translateY(-15px) rotate(2deg)';
+            this.style.zIndex = '50';
+            
+            // パーティクルエフェクトの追加
+            createParticleBurst(this);
+            
+            // 音響効果（オプション）
+            if (window.AudioContext || window.webkitAudioContext) {
+                createHoverSound();
+            }
         });
         
         item.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+            this.style.transform = 'scale(1) translateY(0) rotate(0deg)';
             this.style.zIndex = '1';
         });
     });
@@ -304,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // パーティクルエフェクトの再初期化
             if (typeof particlesJS !== 'undefined') {
                 try {
-                    particlesJS('particles-js', 'particles-js', {
+                    particlesJS('particles-js', {
                         particles: {
                             number: {
                                 value: 80,
@@ -335,23 +329,24 @@ function createParticleBurst(element) {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
         const particle = document.createElement('div');
         particle.style.position = 'fixed';
         particle.style.left = centerX + 'px';
         particle.style.top = centerY + 'px';
-        particle.style.width = '4px';
-        particle.style.height = '4px';
-        particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        particle.style.width = '6px';
+        particle.style.height = '6px';
+        particle.style.background = `hsl(${Math.random() * 360}, 80%, 70%)`;
         particle.style.borderRadius = '50%';
         particle.style.pointerEvents = 'none';
         particle.style.zIndex = '9999';
-        particle.style.transition = 'all 0.6s ease-out';
+        particle.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+        particle.style.boxShadow = '0 0 10px currentColor';
         
         document.body.appendChild(particle);
         
-        const angle = (i / 8) * Math.PI * 2;
-        const distance = 100 + Math.random() * 50;
+        const angle = (i / 12) * Math.PI * 2;
+        const distance = 120 + Math.random() * 80;
         const targetX = centerX + Math.cos(angle) * distance;
         const targetY = centerY + Math.sin(angle) * distance;
         
@@ -359,12 +354,38 @@ function createParticleBurst(element) {
             particle.style.left = targetX + 'px';
             particle.style.top = targetY + 'px';
             particle.style.opacity = '0';
-            particle.style.transform = 'scale(0)';
+            particle.style.transform = 'scale(0) rotate(360deg)';
         }, 10);
         
         setTimeout(() => {
-            document.body.removeChild(particle);
-        }, 600);
+            if (document.body.contains(particle)) {
+                document.body.removeChild(particle);
+            }
+        }, 800);
+    }
+}
+
+// ホバー音響効果
+function createHoverSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    } catch (error) {
+        // 音響効果が利用できない場合は静かに失敗
+        console.log('Audio context not available');
     }
 }
 
@@ -399,8 +420,30 @@ function accelerateStory(storyType) {
         case 'mystery-book':
             createMysteryEffect();
             break;
-        case 'morning-tales':
+        case 'morning-greeting':
             createMorningEffect();
+            break;
+        case 'character-interaction':
+            createCharacterInteractionEffect();
+            break;
+        case 'girl-portrait':
+            createGirlPortraitEffect();
+            break;
+        case 'girls-conversation':
+            createGirlsConversationEffect();
+            break;
+        case 'hydrangea-scene':
+            createHydrangeaEffect();
+            break;
+        case 'scenery':
+            createSceneryEffect();
+            break;
+        case 'emotion':
+            createEmotionEffect();
+            break;
+        default:
+            // デフォルトエフェクト
+            createDefaultEffect();
             break;
     }
 }
@@ -439,40 +482,115 @@ function createGothicEffect() {
 }
 
 function createMangaEffect() {
-    const speechBubbles = document.querySelectorAll('.speech-bubble');
-    speechBubbles.forEach(bubble => {
-        bubble.style.animation = 'bounce 0.5s ease-in-out';
-    });
+    const snsComic = document.querySelector('.sns-comic');
+    if (snsComic) {
+        snsComic.style.animation = 'bounce 0.5s ease-in-out';
+        setTimeout(() => {
+            snsComic.style.animation = '';
+        }, 500);
+    }
 }
 
 function createClassroomEffect() {
-    const panels = document.querySelectorAll('.panel-item');
-    panels.forEach((panel, index) => {
+    const classroomScene = document.querySelector('.classroom-scene');
+    if (classroomScene) {
+        classroomScene.style.transform = 'scale(1.1)';
         setTimeout(() => {
-            panel.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                panel.style.transform = '';
-            }, 300);
-        }, index * 150);
-    });
+            classroomScene.style.transform = '';
+        }, 300);
+    }
 }
 
 function createMysteryEffect() {
-    const bookOverlays = document.querySelectorAll('.book-overlay');
-    bookOverlays.forEach(overlay => {
-        overlay.style.animation = 'fadeInOut 1s ease-in-out';
-    });
+    const bookCover = document.querySelector('.book-cover');
+    if (bookCover) {
+        bookCover.style.animation = 'fadeInOut 1s ease-in-out';
+        setTimeout(() => {
+            bookCover.style.animation = '';
+        }, 1000);
+    }
 }
 
 function createMorningEffect() {
-    const morningElements = document.querySelectorAll('.morning-stories .comic-image');
-    morningElements.forEach((img, index) => {
+    const morningGreeting = document.querySelector('.morning-greeting');
+    if (morningGreeting) {
+        morningGreeting.style.filter = 'brightness(1.3) saturate(1.2)';
         setTimeout(() => {
-            img.style.filter = 'brightness(1.3) saturate(1.2)';
+            morningGreeting.style.filter = '';
+        }, 400);
+    }
+}
+
+function createCharacterInteractionEffect() {
+    const characterTalk = document.querySelector('.character-talk');
+    if (characterTalk) {
+        characterTalk.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            characterTalk.style.transform = '';
+        }, 300);
+    }
+}
+
+function createGirlPortraitEffect() {
+    const girlCloseup = document.querySelector('.girl-closeup');
+    if (girlCloseup) {
+        girlCloseup.style.filter = 'brightness(1.2) contrast(1.1)';
+        setTimeout(() => {
+            girlCloseup.style.filter = '';
+        }, 500);
+    }
+}
+
+function createGirlsConversationEffect() {
+    const girlsTalk = document.querySelector('.girls-talk');
+    if (girlsTalk) {
+        girlsTalk.style.animation = 'pulse 0.6s ease-in-out';
+        setTimeout(() => {
+            girlsTalk.style.animation = '';
+        }, 600);
+    }
+}
+
+function createHydrangeaEffect() {
+    const hydrangeaNight = document.querySelector('.hydrangea-night');
+    if (hydrangeaNight) {
+        hydrangeaNight.style.filter = 'hue-rotate(30deg) brightness(1.1)';
+        setTimeout(() => {
+            hydrangeaNight.style.filter = '';
+        }, 400);
+    }
+}
+
+function createSceneryEffect() {
+    const beautifulScene = document.querySelector('.beautiful-scene');
+    if (beautifulScene) {
+        beautifulScene.style.filter = 'saturate(1.3) brightness(1.1)';
+        setTimeout(() => {
+            beautifulScene.style.filter = '';
+        }, 500);
+    }
+}
+
+function createEmotionEffect() {
+    const emotionalScene = document.querySelector('.emotional-scene');
+    if (emotionalScene) {
+        emotionalScene.style.filter = 'contrast(1.2) brightness(1.1)';
+        setTimeout(() => {
+            emotionalScene.style.filter = '';
+        }, 400);
+    }
+}
+
+function createDefaultEffect() {
+    // デフォルトエフェクト - 全体的な荷電エフェクト
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.style.transform = 'scale(1.02)';
             setTimeout(() => {
-                img.style.filter = '';
-            }, 400);
-        }, index * 200);
+                item.style.transform = '';
+            }, 200);
+        }, index * 50);
     });
 }
 
@@ -542,7 +660,6 @@ function initMainAnimations() {
     // ヒーローセクションのアニメーション
     const heroTitle = document.querySelector('.hero-title');
     const heroSubtitle = document.querySelector('.hero-subtitle');
-    const heroDescription = document.querySelector('.hero-description');
     const heroActions = document.querySelector('.hero-actions');
     
     if (heroTitle) {
@@ -571,19 +688,6 @@ function initMainAnimations() {
         }, 700);
     }
     
-    if (heroDescription) {
-        setTimeout(() => {
-            heroDescription.style.opacity = '0';
-            heroDescription.style.transform = 'translateY(30px)';
-            heroDescription.style.transition = 'all 0.8s ease-out';
-            
-            setTimeout(() => {
-                heroDescription.style.opacity = '1';
-                heroDescription.style.transform = 'translateY(0)';
-            }, 100);
-        }, 900);
-    }
-    
     if (heroActions) {
         setTimeout(() => {
             heroActions.style.opacity = '0';
@@ -594,7 +698,7 @@ function initMainAnimations() {
                 heroActions.style.opacity = '1';
                 heroActions.style.transform = 'translateY(0)';
             }, 100);
-        }, 1100);
+        }, 900);
     }
 }
 
@@ -614,17 +718,6 @@ const additionalStyles = `
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
-}
-
-@keyframes fadeInOut {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
 }
 
 @keyframes glow {
