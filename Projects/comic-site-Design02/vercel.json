@@ -1,31 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/**",
-      "use": "@vercel/static"
-    }
-  ],
+  "buildCommand": "echo 'Static site - no build required'",
+  "outputDirectory": ".",
+  "installCommand": "echo 'No dependencies to install'",
+  "framework": null,
+  "functions": {},
   "routes": [
     {
       "src": "/",
       "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
     }
   ]
 } 
