@@ -10,10 +10,12 @@
     {
       "src": "/",
       "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ],
-  "github": {
-    "enabled": true,
-    "silent": true
-  }
+  "functions": {},
+  "outputDirectory": "."
 } 
