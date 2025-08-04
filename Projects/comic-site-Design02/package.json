@@ -1,13 +1,6 @@
 {
   "name": "comic-site-design02",
   "version": "1.0.0",
-  "description": "Static comic site with glitch effects",
-  "private": true,
-  "scripts": {
-    "build": "echo 'Static site - no build required'",
-    "start": "echo 'Static site - no start required'"
-  },
-  "engines": {
-    "node": "18.x"
-  }
+  "description": "Static comic site",
+  "private": true
 } 
