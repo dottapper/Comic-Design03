@@ -14,7 +14,7 @@
     <!-- 荷電エフェクトオーバーレイ -->
     <div class="charge-overlay"></div>
     
-    <!-- グローバルナビゲーション -->
+    <!-- 革新的ヘッダー -->
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
@@ -58,8 +58,9 @@
             </div>
         </div>
 
-        <!-- ヒーローセクション -->
-        <section class="hero-section">
+        <!-- 統合ヒーロー・グリッドセクション -->
+        <section class="hero-grid-section">
+            <!-- ヒーローコンテンツ - グリッド内に統合 -->
             <div class="hero-content">
                 <h1 class="hero-title">
                     <span class="title-main">Where Stories</span>
@@ -78,23 +79,9 @@
                     <button class="cta-button secondary">Join Community</button>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="accelerator-core">
-                    <div class="core-pulse"></div>
-                    <div class="core-spark"></div>
-                    <div class="particle-orbit"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 大胆なグリッドセクション -->
-        <section class="grid-section">
-            <div class="section-header">
-                <h2 class="section-title">Latest Works</h2>
-                <p class="section-subtitle">最新の物語たち</p>
-            </div>
             
-            <div class="bold-grid-container">
+            <!-- 統合グリッドコンテナ -->
+            <div class="integrated-grid-container">
                 <!-- メインビジュアル - 大きなグリッドアイテム -->
                 <div class="grid-item main-visual" data-story="glitch-girl">
                     <div class="comic-panel story-panel">
@@ -139,27 +126,45 @@
                     </div>
                 </div>
 
-                <!-- マンガパネル - 複数パネル -->
-                <div class="grid-item manga-panels" data-story="classroom-tales">
+                <!-- 教室シーン1 -->
+                <div class="grid-item classroom-scene" data-story="classroom-tales">
                     <div class="comic-panel story-panel">
-                        <div class="panel-grid">
-                            <div class="panel-item">
-                                <img src="images/main05.png" alt="Classroom scene" class="comic-image">
-                                <div class="panel-text">数日後</div>
-                            </div>
-                            <div class="panel-item">
-                                <img src="images/main06.png" alt="Character interaction" class="comic-image">
-                                <div class="speech-bubble">実衣子さんは いつも明るくて<br>クラスのムードメーカー的存在ですよ!</div>
-                            </div>
-                            <div class="panel-item">
-                                <img src="images/main07.jpg" alt="Close-up of girl" class="comic-image">
-                                <div class="speech-bubble">ここからは 私の提案なのですが</div>
-                            </div>
-                        </div>
+                        <img src="images/main05.png" alt="Classroom scene" class="comic-image">
                         <div class="story-overlay">
-                            <div class="story-title">Classroom Chronicles</div>
+                            <div class="story-title">Classroom Scene</div>
+                            <div class="story-description">数日後の教室風景</div>
                             <div class="story-meta">
                                 <span class="story-tag">School</span>
+                                <span class="story-date">2025.2.14</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- キャラクター会話 -->
+                <div class="grid-item character-talk" data-story="character-interaction">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main06.png" alt="Character interaction" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Character Interaction</div>
+                            <div class="story-description">クラスメートとの会話</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Dialogue</span>
+                                <span class="story-date">2025.2.14</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 女の子クローズアップ -->
+                <div class="grid-item girl-closeup" data-story="girl-portrait">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main07.jpg" alt="Close-up of girl" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Girl Portrait</div>
+                            <div class="story-description">提案する少女</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Portrait</span>
                                 <span class="story-date">2025.2.14</span>
                             </div>
                         </div>
@@ -199,28 +204,76 @@
                     </div>
                 </div>
 
-                <!-- 朝の物語 - 複数パネル -->
-                <div class="grid-item morning-stories" data-story="morning-tales">
+                <!-- 朝の挨拶 -->
+                <div class="grid-item morning-greeting" data-story="morning-greeting">
                     <div class="comic-panel story-panel">
-                        <div class="panel-grid">
-                            <div class="panel-item">
-                                <img src="images/main09.png" alt="Girl greeting" class="comic-image">
-                                <div class="speech-bubble">おはようございまーす</div>
-                            </div>
-                            <div class="panel-item">
-                                <img src="images/main10.jpg" alt="Two girls talking" class="comic-image">
-                                <div class="speech-bubble">山田さん<br>まとめ髪珍しいね</div>
-                            </div>
-                            <div class="panel-item">
-                                <img src="images/main11.jpg" alt="Hydrangeas at night" class="comic-image">
-                                <div class="speech-bubble">もう6月だもんね</div>
+                        <img src="images/main09.png" alt="Girl greeting" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Morning Greeting</div>
+                            <div class="story-description">元気な朝の挨拶</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Morning</span>
+                                <span class="story-date">2025.6.15</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- 友達との会話 -->
+                <div class="grid-item girls-talk" data-story="girls-conversation">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main10.jpg" alt="Two girls talking" class="comic-image">
                         <div class="story-overlay">
-                            <div class="story-title">Morning Stories</div>
+                            <div class="story-title">Girls Talk</div>
+                            <div class="story-description">友達との何気ない会話</div>
                             <div class="story-meta">
-                                <span class="story-tag">Slice of Life</span>
+                                <span class="story-tag">Friendship</span>
                                 <span class="story-date">2025.6.15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 紫陽花の夜 -->
+                <div class="grid-item hydrangea-night" data-story="hydrangea-scene">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main11.jpg" alt="Hydrangeas at night" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Hydrangea Night</div>
+                            <div class="story-description">6月の紫陽花</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Nature</span>
+                                <span class="story-date">2025.6.15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 追加: 美しい風景 -->
+                <div class="grid-item beautiful-scene" data-story="scenery">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main12.jpg" alt="Beautiful scenery" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Beautiful Scenery</div>
+                            <div class="story-description">心に残る美しい風景</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Scenery</span>
+                                <span class="story-date">2025.7.20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 追加: エモーショナルシーン -->
+                <div class="grid-item emotional-scene" data-story="emotion">
+                    <div class="comic-panel story-panel">
+                        <img src="images/main13.jpg" alt="Emotional scene" class="comic-image">
+                        <div class="story-overlay">
+                            <div class="story-title">Emotional Moment</div>
+                            <div class="story-description">心を揺さぶる瞬間</div>
+                            <div class="story-meta">
+                                <span class="story-tag">Emotion</span>
+                                <span class="story-date">2025.8.03</span>
                             </div>
                         </div>
                     </div>
