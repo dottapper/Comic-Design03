@@ -6,8 +6,8 @@
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 30%, #0a1a1a 70%, #0a0a0a 100%);
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
@@ -29,7 +29,12 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(168, 85, 247, 0.05) 0%,
+        rgba(6, 214, 160, 0.03) 50%,
+        transparent 100%
+    );
 }
 
 /* 荷電エフェクトオーバーレイ */
@@ -39,9 +44,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
-    z-index: 2;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(6, 214, 160, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.06) 0%, transparent 50%);
     pointer-events: none;
+    z-index: 2;
     animation: charge-pulse 4s ease-in-out infinite;
 }
 
@@ -91,14 +99,11 @@ body {
 }
 
 .logo-main {
-    font-family: 'Black Ops One', cursive;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 2.8rem;
-    font-weight: 400;
+    font-weight: 700;
     color: var(--primary-purple);
-    text-shadow: 
-        0 0 10px var(--primary-purple),
-        2px 2px 0px var(--glitch-red),
-        -2px -2px 0px var(--glitch-blue);
+    text-shadow: 0 0 10px var(--primary-purple);
     transition: all 0.3s ease;
     line-height: 1;
 }
@@ -114,10 +119,7 @@ body {
 }
 
 .plottron-logo:hover .logo-main {
-    text-shadow: 
-        0 0 20px var(--primary-purple),
-        3px 3px 0px var(--glitch-red),
-        -3px -3px 0px var(--glitch-blue);
+    text-shadow: 0 0 20px var(--primary-purple);
     transform: scale(1.02);
 }
 
@@ -141,58 +143,6 @@ body {
     font-size: 0.8rem;
     color: var(--accent-gold);
     opacity: 0.7;
-}
-
-.logo-text {
-    color: #ffffff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.accelerator-badge {
-    position: relative;
-    background: linear-gradient(45deg, #a855f7, #06d6a0);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    overflow: hidden;
-}
-
-.accelerator-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-.spark-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ffffff, transparent);
-    transform: translateY(-50%);
-    animation: spark-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes spark-pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
 }
 
 .nav-list {
@@ -270,9 +220,17 @@ body {
     color: var(--primary-purple);
 }
 
-.loading-text {
-    font-family: 'Black Ops One', cursive;
+.loading-logo {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px var(--primary-purple);
+}
+
+.loading-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
     text-shadow: 0 0 20px var(--primary-purple);
 }
@@ -302,6 +260,14 @@ body {
     margin-top: 1rem;
 }
 
+.loading-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
 .electron-noise {
     position: absolute;
     top: 0;
@@ -317,62 +283,6 @@ body {
     0%, 90% { opacity: 0; }
     95% { opacity: 0.3; }
     100% { opacity: 0; }
-}
-
-/* グリッチエフェクト */
-.glitch-subtitle {
-    color: var(--accent-cyan);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    margin: 1rem 0;
-    position: relative;
-    display: inline-block;
-}
-
-.glitch-subtitle::before,
-.glitch-subtitle::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.glitch-subtitle::before {
-    animation: glitch-1 0.5s linear infinite;
-    color: var(--glitch-red);
-    z-index: -1;
-}
-
-.glitch-subtitle::after {
-    animation: glitch-2 0.5s linear infinite;
-    color: var(--glitch-blue);
-    z-index: -2;
-}
-
-@keyframes glitch-1 {
-    0%, 14%, 15%, 49%, 50%, 99%, 100% {
-        transform: translate(0);
-    }
-    15% {
-        transform: translate(-2px, -1px);
-    }
-    50% {
-        transform: translate(-1px, -1px);
-    }
-}
-
-@keyframes glitch-2 {
-    0%, 20%, 21%, 62%, 63%, 99%, 100% {
-        transform: translate(0);
-    }
-    21% {
-        transform: translate(2px, 1px);
-    }
-    63% {
-        transform: translate(1px, 1px);
-    }
 }
 
 /* メインコンテンツ */
@@ -402,9 +312,9 @@ body {
 }
 
 .hero-title {
-    font-family: 'Black Ops One', cursive;
+    font-family: 'Inter', sans-serif;
     font-size: 4.5rem;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: 2rem;
     display: flex;
@@ -467,6 +377,30 @@ body {
     animation: glitch-2 3s linear infinite;
     color: var(--glitch-blue);
     z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0%, 14%, 15%, 49%, 50%, 99%, 100% {
+        transform: translate(0);
+    }
+    15% {
+        transform: translate(-2px, -1px);
+    }
+    50% {
+        transform: translate(-1px, -1px);
+    }
+}
+
+@keyframes glitch-2 {
+    0%, 20%, 21%, 62%, 63%, 99%, 100% {
+        transform: translate(0);
+    }
+    21% {
+        transform: translate(2px, 1px);
+    }
+    63% {
+        transform: translate(1px, 1px);
+    }
 }
 
 .hero-description {
@@ -615,8 +549,9 @@ body {
 }
 
 .section-title {
-    font-family: 'Black Ops One', cursive;
+    font-family: 'Inter', sans-serif;
     font-size: 3rem;
+    font-weight: 300;
     color: var(--accent-cyan);
     margin-bottom: 1rem;
     text-shadow: 0 0 30px var(--accent-cyan);
@@ -630,252 +565,150 @@ body {
     font-weight: 300;
 }
 
-/* 斬新な加速器グリッドコンテナ */
-.grid-container {
+/* 大胆なグリッドコンテナ */
+.bold-grid-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 80px;
+    grid-template-rows: repeat(8, 120px);
     gap: 1.5rem;
     position: relative;
     margin-top: 3rem;
 }
 
-/* 粒子加速器風の中央軸線 */
-.grid-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, 
-        transparent 0%,
-        var(--accent-cyan) 20%,
-        var(--primary-purple) 50%,
-        var(--accent-gold) 80%,
-        transparent 100%
-    );
-    transform: translateX(-50%);
-    z-index: 1;
-    animation: accelerator-pulse 3s ease-in-out infinite;
-}
-
-@keyframes accelerator-pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-/* 動的グリッドアイテム配置 */
+/* グリッドアイテムの基本スタイル */
 .grid-item {
     position: relative;
+    overflow: hidden;
+    border-radius: 12px;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     cursor: pointer;
     z-index: 10;
 }
 
 .grid-item:hover {
-    transform: scale(1.02) rotate(0.5deg);
+    transform: scale(1.02);
     z-index: 100;
-    filter: brightness(1.1) saturate(1.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* 非対称・動的配置 */
-.item-1 { 
-    grid-column: 1 / 6; 
-    grid-row: 1 / 6;
-    transform: rotate(-1deg);
-}
-.item-2 { 
-    grid-column: 7 / 13; 
+/* メインビジュアル - 大きなグリッドアイテム */
+.main-visual {
+    grid-column: 1 / 8;
     grid-row: 1 / 5;
-    transform: rotate(0.5deg);
-}
-.item-3 { 
-    grid-column: 9 / 13; 
-    grid-row: 5 / 10;
-    transform: rotate(-0.5deg);
-}
-.item-4 { 
-    grid-column: 1 / 5; 
-    grid-row: 6 / 10;
-    transform: rotate(1deg);
-}
-.item-5 { 
-    grid-column: 5 / 9; 
-    grid-row: 6 / 12;
-    transform: rotate(-0.3deg);
-}
-.item-6 { 
-    grid-column: 1 / 7; 
-    grid-row: 10 / 14;
-    transform: rotate(0.8deg);
-}
-.item-7 { 
-    grid-column: 7 / 13; 
-    grid-row: 10 / 15;
-    transform: rotate(-0.7deg);
 }
 
-/* ストーリーパネル */
-.story-panel {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    height: 100%;
-    position: relative;
-    transition: all 0.4s ease;
-    border: 2px solid transparent;
+/* サイドビジュアル - 縦長 */
+.side-visual {
+    grid-column: 8 / 13;
+    grid-row: 1 / 4;
 }
 
-.story-panel:hover {
-    box-shadow: 0 15px 50px rgba(168, 85, 247, 0.4);
-    border-color: #a855f7;
-    transform: translateY(-5px);
+/* ブックカバー - 横長 */
+.book-cover {
+    grid-column: 8 / 13;
+    grid-row: 4 / 6;
 }
 
-.panel-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* マンガパネル - 複数パネル */
+.manga-panels {
+    grid-column: 1 / 6;
+    grid-row: 5 / 8;
+}
+
+/* ゴシックロリータ - 縦長 */
+.gothic-lolita {
+    grid-column: 6 / 9;
+    grid-row: 5 / 8;
+}
+
+/* SNSコミック - 横長 */
+.sns-comic {
+    grid-column: 9 / 13;
+    grid-row: 5 / 7;
+}
+
+/* 朝の物語 - 複数パネル */
+.morning-stories {
+    grid-column: 9 / 13;
+    grid-row: 7 / 9;
+}
+
+/* コミックパネル */
+.comic-panel {
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 5;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #1a1a1a;
+    transition: all 0.4s ease;
 }
 
-.story-charge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #a855f7, #06d6a0);
-    animation: charge-spin 2s linear infinite;
-}
-
-@keyframes charge-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.story-spark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 2px;
-    background: #fbbf24;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: spark-flash 1s ease-in-out infinite;
-}
-
-@keyframes spark-flash {
-    0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(3); }
+.comic-panel:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .comic-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
     transition: all 0.4s ease;
 }
 
-.story-panel:hover .comic-image {
-    transform: scale(1.1);
+.comic-panel:hover .comic-image {
+    transform: scale(1.05);
+    filter: brightness(1.1) saturate(1.1);
 }
 
-/* 革新的サイド情報パネル */
-.story-info {
+/* ストーリーオーバーレイ */
+.story-overlay {
     position: absolute;
-    top: 0;
-    right: -300px;
-    width: 280px;
-    height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.95) 0%,
-        rgba(26, 10, 26, 0.95) 50%,
-        rgba(10, 26, 26, 0.95) 100%
-    );
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--primary-purple);
-    border-radius: 0 15px 15px 0;
-    padding: 1.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 2rem;
     color: white;
-    transform: translateX(0);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.story-panel:hover .story-info {
-    transform: translateX(-280px);
-    opacity: 1;
-    pointer-events: all;
-    box-shadow: 
-        -20px 0 40px rgba(168, 85, 247, 0.3),
-        0 0 60px rgba(0, 0, 0, 0.5);
+.comic-panel:hover .story-overlay {
+    transform: translateY(0);
 }
 
-.story-info::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 10px solid var(--primary-purple);
-}
-
-.story-info h3 {
-    font-family: 'Black Ops One', cursive;
+.story-title {
+    font-family: 'Inter', sans-serif;
     font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
     color: var(--accent-cyan);
-    text-shadow: 0 0 10px var(--accent-cyan);
-    border-bottom: 2px solid var(--primary-purple);
-    padding-bottom: 0.5rem;
 }
 
-.story-info p {
-    font-family: 'JetBrains Mono', monospace;
+.story-description {
+    font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    line-height: 1.6;
+    opacity: 0.8;
     margin-bottom: 1rem;
-    opacity: 0.9;
+    line-height: 1.4;
 }
 
 .story-meta {
-    margin-top: auto;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    align-items: center;
 }
 
 .story-tag {
-    display: inline-block;
-    background: linear-gradient(45deg, var(--primary-purple), var(--accent-cyan));
+    background: var(--primary-purple);
     color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .story-date {
@@ -883,53 +716,112 @@ body {
     font-size: 0.8rem;
     color: var(--accent-gold);
     opacity: 0.8;
-    border-left: 3px solid var(--accent-gold);
-    padding-left: 0.5rem;
 }
 
-/* 垂直パネル */
-.vertical-panel {
-    display: flex;
-    flex-direction: column;
-}
-
-.multi-panel {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.panel-section {
-    flex: 1;
-    position: relative;
-    border-bottom: 1px solid #eee;
-}
-
-.panel-section:last-child {
-    border-bottom: none;
-}
-
-/* ミニマル情報表示 */
-.minimal-info {
+/* ブックオーバーレイ */
+.book-overlay {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    color: var(--accent-cyan);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 600;
-    border: 1px solid var(--primary-purple);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    z-index: 15;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+    padding: 2rem;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.story-panel:hover .minimal-info {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+.comic-panel:hover .book-overlay {
+    transform: translateY(0);
+}
+
+.book-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent-cyan);
+}
+
+.book-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.book-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.author, .publisher {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    opacity: 0.8;
+}
+
+/* パネルグリッド */
+.panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.panel-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.panel-item .comic-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.panel-text {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.speech-bubble {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(255, 255, 255, 0.95);
 }
 
 /* テキストオーバーレイ */
@@ -940,161 +832,44 @@ body {
     right: 0;
     bottom: 0;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     padding: 1rem;
     pointer-events: none;
-    z-index: 10;
 }
 
 .text-right, .text-left {
-    background: rgba(255, 255, 255, 0.95);
-    color: #000;
-    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
     border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    line-height: 1.4;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.3;
+    max-width: 80%;
+}
+
+.text-right {
+    align-self: flex-end;
+}
+
+.text-left {
+    align-self: flex-start;
 }
 
 /* Twitterバッジ */
 .twitter-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: linear-gradient(45deg, #a855f7, #06d6a0);
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-purple);
     color: white;
-    padding: 8px 15px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    z-index: 10;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-}
-
-/* 吹き出し */
-.speech-bubbles {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 10;
-}
-
-.speech-bubble {
-    background: rgba(255, 255, 255, 0.95);
-    color: #000;
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    max-width: 80%;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 20px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid rgba(255, 255, 255, 0.95);
-}
-
-.bubble {
-    background: rgba(255, 255, 255, 0.95);
-    color: #000;
-    padding: 8px 12px;
-    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     font-size: 0.7rem;
-    max-width: 70%;
-    margin-bottom: 6px;
-    position: relative;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 15px;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid rgba(255, 255, 255, 0.95);
-}
-
-/* パネルテキスト */
-.panel-text {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    z-index: 10;
-}
-
-/* 本の表紙 */
-.book-cover {
-    position: relative;
-}
-
-.book-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.7));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    color: white;
-    font-weight: bold;
-    z-index: 10;
-}
-
-.book-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
-
-.book-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.book-credits {
-    margin-bottom: 1rem;
-    font-size: 0.8rem;
-}
-
-.author, .supervisor {
-    margin-bottom: 0.5rem;
-}
-
-.publisher {
-    font-size: 0.7rem;
-    opacity: 0.8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* アクセラレーターセクション */
@@ -1173,9 +948,9 @@ body {
 }
 
 .accelerator-text h2 {
-    font-family: 'Black Ops One', cursive;
+    font-family: 'Inter', sans-serif;
     font-size: 3.5rem;
-    font-weight: 400;
+    font-weight: 300;
     background: linear-gradient(45deg, var(--primary-purple), var(--accent-cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1282,27 +1057,45 @@ body {
         justify-content: center;
     }
     
-    .grid-container {
+    .bold-grid-container {
         grid-template-columns: repeat(8, 1fr);
-        grid-auto-rows: 60px;
-        gap: 0.8rem;
+        grid-template-rows: repeat(12, 100px);
+        gap: 1rem;
     }
     
-    .item-1 { grid-column: 1 / 5; grid-row: 1 / 5; }
-    .item-2 { grid-column: 5 / 9; grid-row: 1 / 4; }
-    .item-3 { grid-column: 6 / 9; grid-row: 4 / 8; }
-    .item-4 { grid-column: 1 / 4; grid-row: 5 / 8; }
-    .item-5 { grid-column: 4 / 7; grid-row: 5 / 10; }
-    .item-6 { grid-column: 1 / 5; grid-row: 8 / 12; }
-    .item-7 { grid-column: 5 / 9; grid-row: 8 / 13; }
-    
-    .story-info {
-        right: -250px;
-        width: 230px;
+    .main-visual {
+        grid-column: 1 / 6;
+        grid-row: 1 / 5;
     }
     
-    .story-panel:hover .story-info {
-        transform: translateX(-230px);
+    .side-visual {
+        grid-column: 6 / 9;
+        grid-row: 1 / 4;
+    }
+    
+    .book-cover {
+        grid-column: 6 / 9;
+        grid-row: 4 / 6;
+    }
+    
+    .manga-panels {
+        grid-column: 1 / 5;
+        grid-row: 5 / 9;
+    }
+    
+    .gothic-lolita {
+        grid-column: 5 / 7;
+        grid-row: 5 / 9;
+    }
+    
+    .sns-comic {
+        grid-column: 7 / 9;
+        grid-row: 5 / 7;
+    }
+    
+    .morning-stories {
+        grid-column: 7 / 9;
+        grid-row: 7 / 11;
     }
     
     .header-container {
@@ -1354,45 +1147,34 @@ body {
 }
 
 @media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: 80px;
-        gap: 0.8rem;
+    .bold-grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 200px);
+        gap: 1rem;
     }
     
-    .item-1 { grid-column: 1 / 5; grid-row: 1 / 4; transform: rotate(0deg); }
-    .item-2 { grid-column: 1 / 5; grid-row: 4 / 7; transform: rotate(0deg); }
-    .item-3 { grid-column: 1 / 5; grid-row: 7 / 10; transform: rotate(0deg); }
-    .item-4 { grid-column: 1 / 5; grid-row: 10 / 13; transform: rotate(0deg); }
-    .item-5 { grid-column: 1 / 5; grid-row: 13 / 17; transform: rotate(0deg); }
-    .item-6 { grid-column: 1 / 5; grid-row: 17 / 20; transform: rotate(0deg); }
-    .item-7 { grid-column: 1 / 5; grid-row: 20 / 24; transform: rotate(0deg); }
+    .main-visual,
+    .side-visual,
+    .book-cover,
+    .manga-panels,
+    .gothic-lolita,
+    .sns-comic,
+    .morning-stories {
+        grid-column: 1;
+    }
     
-    .story-info {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: auto;
-        border-radius: 0 0 15px 15px;
+    .main-visual { grid-row: 1; }
+    .side-visual { grid-row: 2; }
+    .book-cover { grid-row: 3; }
+    .manga-panels { grid-row: 4; }
+    .gothic-lolita { grid-row: 5; }
+    .sns-comic { grid-row: 6; }
+    .morning-stories { grid-row: 7; }
+    
+    .story-overlay,
+    .book-overlay {
         transform: translateY(0);
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.4s ease;
-        z-index: 200;
-    }
-    
-    .story-panel:hover .story-info {
-        transform: translateY(0);
-        opacity: 1;
-        max-height: 200px;
-        padding: 1rem;
-    }
-    
-    .story-info::before {
-        display: none;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     }
     
     .navigation ul {
@@ -1406,20 +1188,19 @@ body {
     }
     
     .logo .plottron-comic-glitch {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     
     .logo-text {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
     
     .book-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     .text-right, .text-left {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.7rem;
     }
     
     .concept-title {
@@ -1447,7 +1228,6 @@ body {
         font-size: 0.9rem;
     }
     
-    /* モバイルでのホバーエフェクト無効化 */
     .story-panel:hover {
         transform: none;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
@@ -1461,15 +1241,13 @@ body {
 
 @media (max-width: 480px) {
     .header-container {
-        flex-direction: column;
-        gap: 1rem;
         padding: 1rem;
     }
     
     .navigation ul {
+        gap: 0.3rem;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.3rem;
     }
     
     .navigation a {
@@ -1482,17 +1260,17 @@ body {
     }
     
     .story-panel {
-        border-radius: 10px;
+        border-radius: 8px;
     }
     
     .date-overlay, .twitter-badge {
-        font-size: 0.7rem;
-        padding: 4px 8px;
+        font-size: 0.6rem;
+        padding: 0.3rem 0.6rem;
     }
     
     .speech-bubble, .bubble {
-        font-size: 0.7rem;
-        padding: 6px 10px;
+        font-size: 0.6rem;
+        padding: 0.3rem;
     }
     
     .concept-title {
@@ -1524,7 +1302,6 @@ body {
         font-size: 0.8rem;
     }
     
-    /* タッチデバイスでの最適化 */
     .story-panel {
         cursor: pointer;
     }
@@ -1538,7 +1315,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -1547,7 +1324,7 @@ body {
 }
 
 .grid-item {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
 .grid-item:nth-child(1) { animation-delay: 0.1s; }
@@ -1558,7 +1335,6 @@ body {
 .grid-item:nth-child(6) { animation-delay: 0.6s; }
 .grid-item:nth-child(7) { animation-delay: 0.7s; }
 
-/* 追加アニメーション */
 .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -1612,68 +1388,9 @@ body {
         0 0 60px rgba(168, 85, 247, 0.2);
 }
 
-.grid-item:hover .story-charge {
-    animation: charge-spin 0.3s linear infinite;
-    transform: scale(1.5);
-    box-shadow: 0 0 20px var(--primary-purple);
-}
-
-.grid-item:hover .story-spark {
-    animation: spark-flash 0.2s ease-in-out infinite;
-    transform: translate(-50%, -50%) scale(5);
-}
-
-/* パーティクル軌道エフェクト */
-.grid-item::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    background: var(--accent-cyan);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: all 0.6s ease;
-    z-index: 300;
-}
-
-.grid-item:hover::before {
-    opacity: 1;
-    animation: orbit 2s linear infinite;
-}
-
-@keyframes orbit {
-    0% { 
-        transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); 
-    }
-    100% { 
-        transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); 
-    }
-}
-
-/* パーティクル強化 */
-#particles-js {
-    background: radial-gradient(
-        ellipse at center,
-        rgba(168, 85, 247, 0.05) 0%,
-        rgba(6, 214, 160, 0.03) 50%,
-        transparent 100%
-    );
-}
-
 /* フォーカス状態の改善 */
 .grid-item:focus {
     outline: 2px solid var(--accent-cyan);
     outline-offset: 4px;
     box-shadow: 0 0 20px rgba(6, 214, 160, 0.3);
-}
-
-/* 荷電エフェクトの改善 */
-.charge-overlay {
-    background: 
-        radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(6, 214, 160, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.06) 0%, transparent 50%);
 }

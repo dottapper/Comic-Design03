@@ -119,8 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 retina_detect: true
             });
-        } else {
-            console.warn('ParticlesJS not loaded. Skipping particle effects.');
         }
     } catch (error) {
         console.error('Error initializing particles:', error);
@@ -186,55 +184,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ストーリーパネルのインタラクティブ機能
-    storyPanels.forEach(panel => {
-        const storyCharge = panel.querySelector('.story-charge');
-        const storySpark = panel.querySelector('.story-spark');
-        
-        // ホバー時の荷電エフェクト
-        panel.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.zIndex = '20';
-            
-            // 荷電エフェクトの強化
-            if (storyCharge) {
-                storyCharge.style.animation = 'charge-spin 0.5s linear infinite';
-            }
-            if (storySpark) {
-                storySpark.style.animation = 'spark-flash 0.3s ease-in-out infinite';
-            }
-            
-            // パーティクルエフェクトの追加
-            createParticleBurst(this);
-        });
-        
-        panel.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.zIndex = '1';
-            
-            // 荷電エフェクトの通常化
-            if (storyCharge) {
-                storyCharge.style.animation = 'charge-spin 2s linear infinite';
-            }
-            if (storySpark) {
-                storySpark.style.animation = 'spark-flash 1s ease-in-out infinite';
-            }
-        });
-        
-        // クリック時のストーリーアクセラレーション
-        panel.addEventListener('click', function() {
-            const gridItem = this.closest('.grid-item');
-            if (gridItem) {
-                const storyType = gridItem.dataset.story;
-                accelerateStory(storyType);
-            }
-        });
-    });
-    
-    // グリッドアイテムのホバーエフェクト強化
+    // グリッドアイテムのインタラクティブ機能
     gridItems.forEach(item => {
+        const storyPanel = item.querySelector('.story-panel');
+        
+        if (storyPanel) {
+            // ホバー時のエフェクト
+            storyPanel.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.zIndex = '20';
+                
+                // パーティクルエフェクトの追加
+                createParticleBurst(this);
+            });
+            
+            storyPanel.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.zIndex = '1';
+            });
+            
+            // クリック時のストーリーアクセラレーション
+            storyPanel.addEventListener('click', function() {
+                const gridItem = this.closest('.grid-item');
+                if (gridItem) {
+                    const storyType = gridItem.dataset.story;
+                    accelerateStory(storyType);
+                }
+            });
+        }
+        
+        // グリッドアイテム全体のホバーエフェクト
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.03)';
+            this.style.transform = 'scale(1.02)';
             this.style.zIndex = '10';
         });
         
@@ -259,6 +240,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         img.style.opacity = '1';
                     };
                     
+                    // 既に読み込まれている場合
+                    if (img.complete) {
+                        img.style.opacity = '1';
+                    }
+                    
                     observer.unobserve(img);
                 }
             });
@@ -269,41 +255,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // スクロール時のヘッダー背景変更
+    // ヘッダーのスクロール効果
+    let lastScrollTop = 0;
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.header');
-        if (header) {
-            if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-                header.style.backdropFilter = 'blur(20px)';
-            } else {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                header.style.backdropFilter = 'blur(20px)';
-            }
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            header.style.background = 'rgba(0, 0, 0, 0.95)';
+            header.style.backdropFilter = 'blur(20px)';
+        } else {
+            header.style.background = 'rgba(0, 0, 0, 0.95)';
+            header.style.backdropFilter = 'blur(30px)';
         }
+        
+        lastScrollTop = scrollTop;
     });
     
     // キーボードナビゲーション
     document.addEventListener('keydown', function(e) {
-        switch(e.key) {
-            case 'Home':
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                break;
-            case 'End':
-                e.preventDefault();
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
-                break;
+        if (e.key === 'Escape') {
+            // ESCキーでページトップに戻る
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     });
     
-    // タッチデバイス用のタップエフェクト
+    // タッチデバイス対応
     if ('ontouchstart' in window) {
         gridItems.forEach(item => {
             item.addEventListener('touchstart', function() {
@@ -316,48 +296,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // リサイズ時のグリッド再計算
+    // リサイズ対応
+    let resizeTimeout;
     window.addEventListener('resize', function() {
-        const gridContainer = document.querySelector('.grid-container');
-        if (gridContainer) {
-            gridContainer.style.display = 'none';
-            setTimeout(() => {
-                gridContainer.style.display = 'grid';
-            }, 10);
-        }
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // パーティクルエフェクトの再初期化
+            if (typeof particlesJS !== 'undefined') {
+                try {
+                    particlesJS('particles-js', 'particles-js', {
+                        particles: {
+                            number: {
+                                value: 80,
+                                density: {
+                                    enable: true,
+                                    value_area: 800
+                                }
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error reinitializing particles:', error);
+                }
+            }
+        }, 250);
     });
     
-    // アクセシビリティ向上：フォーカス管理
-    gridItems.forEach(item => {
-        item.setAttribute('tabindex', '0');
-        item.addEventListener('focus', function() {
-            this.style.outline = '2px solid #a855f7';
-            this.style.outlineOffset = '2px';
-        });
-        
-        item.addEventListener('blur', function() {
-            this.style.outline = 'none';
-        });
-    });
-    
-    // エラーハンドリング
-    images.forEach(img => {
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'image-error';
-            errorDiv.innerHTML = '<p>画像を読み込めませんでした</p>';
-            errorDiv.style.cssText = `
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                background-color: #f0f0f0;
-                color: #666;
-                font-size: 0.9rem;
-            `;
-            this.parentNode.appendChild(errorDiv);
-        });
+    // ページ読み込み完了時の処理
+    window.addEventListener('load', function() {
+        // メインアニメーションの開始
+        initMainAnimations();
     });
 });
 
@@ -367,59 +335,42 @@ function createParticleBurst(element) {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 8; i++) {
         const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #a855f7;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            left: ${centerX}px;
-            top: ${centerY}px;
-        `;
+        particle.style.position = 'fixed';
+        particle.style.left = centerX + 'px';
+        particle.style.top = centerY + 'px';
+        particle.style.width = '4px';
+        particle.style.height = '4px';
+        particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+        particle.style.transition = 'all 0.6s ease-out';
         
         document.body.appendChild(particle);
         
-        const angle = (i / 10) * Math.PI * 2;
-        const distance = 50 + Math.random() * 50;
-        const endX = centerX + Math.cos(angle) * distance;
-        const endY = centerY + Math.sin(angle) * distance;
+        const angle = (i / 8) * Math.PI * 2;
+        const distance = 100 + Math.random() * 50;
+        const targetX = centerX + Math.cos(angle) * distance;
+        const targetY = centerY + Math.sin(angle) * distance;
         
-        particle.animate([
-            { 
-                transform: 'translate(0, 0) scale(1)',
-                opacity: 1
-            },
-            { 
-                transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(0)`,
-                opacity: 0
-            }
-        ], {
-            duration: 1000,
-            easing: 'ease-out'
-        }).onfinish = () => {
-            particle.remove();
-        };
+        setTimeout(() => {
+            particle.style.left = targetX + 'px';
+            particle.style.top = targetY + 'px';
+            particle.style.opacity = '0';
+            particle.style.transform = 'scale(0)';
+        }, 10);
+        
+        setTimeout(() => {
+            document.body.removeChild(particle);
+        }, 600);
     }
 }
 
-// ストーリーアクセラレーション機能
+// ストーリーアクセラレーション
 function accelerateStory(storyType) {
-    console.log(`Accelerating story: ${storyType}`);
-    
-    // ストーリーアクセラレーターのアニメーション強化
-    const accelerator = document.querySelector('.story-accelerator');
-    if (accelerator) {
-        accelerator.style.animation = 'pulse 0.5s ease-in-out';
-        setTimeout(() => {
-            accelerator.style.animation = '';
-        }, 500);
-    }
-    
-    // 荷電エフェクトの強化
+    // グローバルな荷電エフェクト
     const chargeOverlay = document.querySelector('.charge-overlay');
     if (chargeOverlay) {
         chargeOverlay.style.animation = 'charge-pulse 0.3s ease-in-out';
@@ -428,8 +379,8 @@ function accelerateStory(storyType) {
         }, 300);
     }
     
-    // ストーリータイプに応じたエフェクト
-    switch(storyType) {
+    // ストーリータイプ別のエフェクト
+    switch (storyType) {
         case 'glitch-girl':
             createGlitchEffect();
             break;
@@ -454,10 +405,10 @@ function accelerateStory(storyType) {
     }
 }
 
-// ストーリータイプ別エフェクト
+// ストーリー別エフェクト関数
 function createGlitchEffect() {
     const body = document.body;
-    body.style.filter = 'hue-rotate(180deg)';
+    body.style.filter = 'hue-rotate(180deg) saturate(1.5)';
     setTimeout(() => {
         body.style.filter = '';
     }, 500);
@@ -465,206 +416,227 @@ function createGlitchEffect() {
 
 function createColorDreamEffect() {
     const particles = document.querySelectorAll('#particles-js canvas');
-    particles.forEach(particle => {
-        particle.style.filter = 'saturate(2) brightness(1.2)';
+    particles.forEach(canvas => {
+        canvas.style.filter = 'hue-rotate(90deg) brightness(1.2)';
     });
     setTimeout(() => {
-        particles.forEach(particle => {
-            particle.style.filter = '';
+        particles.forEach(canvas => {
+            canvas.style.filter = '';
         });
-    }, 1000);
+    }, 800);
 }
 
 function createGothicEffect() {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
-        pointer-events: none;
-        z-index: 1000;
-        animation: fadeInOut 1s ease-in-out;
-    `;
-    document.body.appendChild(overlay);
-    setTimeout(() => overlay.remove(), 1000);
-}
-
-function createMangaEffect() {
-    const panels = document.querySelectorAll('.story-panel');
-    panels.forEach((panel, index) => {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item, index) => {
         setTimeout(() => {
-            panel.style.transform = 'scale(1.1)';
+            item.style.transform = 'scale(1.05) rotate(1deg)';
             setTimeout(() => {
-                panel.style.transform = '';
+                item.style.transform = '';
             }, 200);
         }, index * 100);
     });
 }
 
+function createMangaEffect() {
+    const speechBubbles = document.querySelectorAll('.speech-bubble');
+    speechBubbles.forEach(bubble => {
+        bubble.style.animation = 'bounce 0.5s ease-in-out';
+    });
+}
+
 function createClassroomEffect() {
-    const speechBubbles = document.querySelectorAll('.speech-bubble, .bubble');
-    speechBubbles.forEach((bubble, index) => {
+    const panels = document.querySelectorAll('.panel-item');
+    panels.forEach((panel, index) => {
         setTimeout(() => {
-            bubble.style.animation = 'bounce 0.5s ease-in-out';
+            panel.style.transform = 'scale(1.1)';
             setTimeout(() => {
-                bubble.style.animation = '';
-            }, 500);
-        }, index * 200);
+                panel.style.transform = '';
+            }, 300);
+        }, index * 150);
     });
 }
 
 function createMysteryEffect() {
-    const bookInfo = document.querySelector('.book-info');
-    if (bookInfo) {
-        bookInfo.style.animation = 'glow 1s ease-in-out';
-        setTimeout(() => {
-            bookInfo.style.animation = '';
-        }, 1000);
-    }
+    const bookOverlays = document.querySelectorAll('.book-overlay');
+    bookOverlays.forEach(overlay => {
+        overlay.style.animation = 'fadeInOut 1s ease-in-out';
+    });
 }
 
 function createMorningEffect() {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
-        pointer-events: none;
-        z-index: 1000;
-        animation: fadeInOut 1s ease-in-out;
-    `;
-    document.body.appendChild(overlay);
-    setTimeout(() => overlay.remove(), 1000);
+    const morningElements = document.querySelectorAll('.morning-stories .comic-image');
+    morningElements.forEach((img, index) => {
+        setTimeout(() => {
+            img.style.filter = 'brightness(1.3) saturate(1.2)';
+            setTimeout(() => {
+                img.style.filter = '';
+            }, 400);
+        }, index * 200);
+    });
 }
 
-// 追加のCSSアニメーション
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-    
-    @keyframes fadeInOut {
-        0%, 100% { opacity: 0; }
-        50% { opacity: 1; }
-    }
-    
-    @keyframes bounce {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-    }
-    
-    @keyframes glow {
-        0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
-        50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
-    }
-`;
-document.head.appendChild(style);
-
-// ローディングアニメーション関数
+// ローディングアニメーション
 function initLoadingAnimation() {
-    const loadingOverlay = document.getElementById('loading-overlay');
     const loadingProgress = document.querySelector('.loading-progress');
     const loadingPercentage = document.querySelector('.loading-percentage');
-    const electronNoise = document.querySelector('.electron-noise');
-    
-    // 要素が存在するかチェック
-    if (!loadingOverlay || !loadingProgress || !loadingPercentage) {
-        console.warn('Loading elements not found');
-        return;
-    }
+    const loadingStatus = document.querySelector('.loading-status');
     
     let progress = 0;
-    const targetProgress = 90;
-    const finalProgress = 100;
-    
-    // 90%まで進む
-    const interval1 = setInterval(() => {
-        progress += Math.random() * 3 + 1;
-        if (progress >= targetProgress) {
-            progress = targetProgress;
-            clearInterval(interval1);
-            
-            // 88%に戻る（Plot Acceleratorコンセプト）
-            setTimeout(() => {
-                progress = 88;
-                updateProgress();
-                
-                // ELECTRON NOISEエフェクト
-                if (electronNoise) {
-                    electronNoise.style.opacity = '0.5';
-                    setTimeout(() => {
-                        electronNoise.style.opacity = '0';
-                    }, 200);
-                }
-                
-                // 瞬時に100%到達
-                setTimeout(() => {
-                    progress = finalProgress;
-                    updateProgress();
-                }, 500);
-            }, 800);
-        }
-        updateProgress();
-    }, 50);
+    const statuses = [
+        'Initializing Story Particles...',
+        'Loading Visual Elements...',
+        'Preparing Grid Layout...',
+        'Charging Plot Accelerator...',
+        'Ready to Accelerate Stories...'
+    ];
     
     function updateProgress() {
-        if (loadingProgress && loadingPercentage) {
-            loadingProgress.style.width = `${progress}%`;
-            loadingPercentage.textContent = `${Math.floor(progress)}%`;
+        if (progress < 100) {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
             
-            // グリッチエフェクト
-            if (Math.random() < 0.1) {
-                loadingPercentage.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
-                setTimeout(() => {
-                    loadingPercentage.style.transform = 'translateX(0)';
-                }, 50);
+            loadingProgress.style.width = progress + '%';
+            loadingPercentage.textContent = Math.floor(progress) + '%';
+            
+            const statusIndex = Math.floor((progress / 100) * (statuses.length - 1));
+            loadingStatus.textContent = statuses[statusIndex];
+            
+            if (progress < 100) {
+                setTimeout(updateProgress, 100 + Math.random() * 200);
             }
         }
     }
+    
+    updateProgress();
 }
 
+// ローディングオーバーレイを非表示
 function hideLoadingOverlay() {
     const loadingOverlay = document.getElementById('loading-overlay');
     if (loadingOverlay) {
         loadingOverlay.classList.add('hidden');
-        
-        // ローディング完了後のエフェクト
         setTimeout(() => {
             loadingOverlay.style.display = 'none';
-            initMainAnimations();
         }, 500);
     }
 }
 
+// メインアニメーションの初期化
 function initMainAnimations() {
-    // メインコンテンツのアニメーション初期化
+    // グリッドアイテムのフェードインアニメーション
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.1}s`;
-        item.classList.add('fade-in-up');
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 50);
+        }, index * 200);
     });
     
-    // グリッチテキストアニメーション
-    const glitchElements = document.querySelectorAll('.glitch-subtitle');
-    glitchElements.forEach(element => {
-        setInterval(() => {
-            if (Math.random() < 0.1) {
-                element.classList.add('glitch-active');
-                setTimeout(() => {
-                    element.classList.remove('glitch-active');
-                }, 200);
-            }
-        }, 2000);
-    });
+    // ヒーローセクションのアニメーション
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroDescription = document.querySelector('.hero-description');
+    const heroActions = document.querySelector('.hero-actions');
+    
+    if (heroTitle) {
+        setTimeout(() => {
+            heroTitle.style.opacity = '0';
+            heroTitle.style.transform = 'translateY(30px)';
+            heroTitle.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+            }, 100);
+        }, 500);
+    }
+    
+    if (heroSubtitle) {
+        setTimeout(() => {
+            heroSubtitle.style.opacity = '0';
+            heroSubtitle.style.transform = 'translateY(30px)';
+            heroSubtitle.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                heroSubtitle.style.opacity = '1';
+                heroSubtitle.style.transform = 'translateY(0)';
+            }, 100);
+        }, 700);
+    }
+    
+    if (heroDescription) {
+        setTimeout(() => {
+            heroDescription.style.opacity = '0';
+            heroDescription.style.transform = 'translateY(30px)';
+            heroDescription.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                heroDescription.style.opacity = '1';
+                heroDescription.style.transform = 'translateY(0)';
+            }, 100);
+        }, 900);
+    }
+    
+    if (heroActions) {
+        setTimeout(() => {
+            heroActions.style.opacity = '0';
+            heroActions.style.transform = 'translateY(30px)';
+            heroActions.style.transition = 'all 0.8s ease-out';
+            
+            setTimeout(() => {
+                heroActions.style.opacity = '1';
+                heroActions.style.transform = 'translateY(0)';
+            }, 100);
+        }, 1100);
+    }
 }
+
+// 追加のCSSアニメーション
+const additionalStyles = `
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 20px var(--primary-purple); }
+    50% { text-shadow: 0 0 30px var(--primary-purple), 0 0 40px var(--primary-purple); }
+}
+`;
+
+// スタイルをドキュメントヘッドに追加
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
 
 
 
