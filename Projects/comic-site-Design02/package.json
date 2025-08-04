@@ -1,0 +1,13 @@
+{
+  "name": "comic-site-design02",
+  "version": "1.0.0",
+  "description": "Comic site design with HTML, CSS, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": ["comic", "design", "static-site"],
+  "author": "dottapper",
+  "license": "MIT"
+} 
