@@ -1,0 +1,464 @@
+/* リセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bungee', 'Anton', Impact, sans-serif;
+    background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 70%);
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 蛍光ビタミンカラーパレット */
+:root {
+    --neon-pink: #FF1DCE;
+    --electric-blue: #00D4FF;
+    --lime-green: #CCFF00;
+    --electric-orange: #FF6B00;
+    --cyber-purple: #B829FF;
+    --volt-yellow: #FFFF00;
+}
+
+/* 背景パーティクルエフェクト */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, var(--neon-pink), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--electric-blue), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--lime-green), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--electric-orange), transparent),
+        radial-gradient(2px 2px at 160px 30px, var(--cyber-purple), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: particleFloat 20s linear infinite;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateX(0px) translateY(0px); }
+    33% { transform: translateX(-30px) translateY(-30px); }
+    66% { transform: translateX(30px) translateY(-60px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}
+
+/* グリッチタイトル用フォント */
+
+/* ヘッダー */
+.header {
+    background-color: #000000;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo .plottron-comic-glitch {
+    position: relative;
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    z-index: 10;
+    user-select: none;
+    cursor: pointer;
+    
+    /* ベース色（サイバーパープル） */
+    color: var(--cyber-purple);
+    
+    /* 太い黒縁取り */
+    text-shadow: 
+        -4px -4px 0px #000,
+        4px -4px 0px #000,
+        -4px 4px 0px #000,
+        4px 4px 0px #000,
+        -4px 0px 0px #000,
+        4px 0px 0px #000,
+        0px -4px 0px #000,
+        0px 4px 0px #000,
+        /* 内側のハイライト */
+        -2px -2px 0px #ffffff22,
+        2px 2px 0px #00000066,
+        /* グロー効果 */
+        0 0 20px rgba(168, 85, 247, 0.5);
+    
+    filter: brightness(1.1) contrast(1.2);
+    will-change: transform, filter, color;
+}
+
+/* グリッチ用疑似要素 */
+.logo .plottron-comic-glitch::before,
+.logo .plottron-comic-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Black Ops One', cursive;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    line-height: inherit;
+    pointer-events: none;
+    z-index: 11;
+}
+
+.logo .plottron-comic-glitch::before {
+    color: #fbbf24; /* 黄色 */
+    text-shadow: 
+        -4px -4px 0px #000,
+        4px -4px 0px #000,
+        -4px 4px 0px #000,
+        4px 4px 0px #000,
+        -4px 0px 0px #000,
+        4px 0px 0px #000,
+        0px -4px 0px #000,
+        0px 4px 0px #000,
+        -2px -2px 0px #ffffff22,
+        2px 2px 0px #00000066,
+        0 0 20px rgba(251, 191, 36, 0.5);
+    
+    animation: glitchShift1 2.5s infinite linear;
+    mix-blend-mode: screen;
+    opacity: 0;
+}
+
+.logo .plottron-comic-glitch::after {
+    color: #06d6a0; /* シアン系グリーン */
+    text-shadow: 
+        -4px -4px 0px #000,
+        4px -4px 0px #000,
+        -4px 4px 0px #000,
+        4px 4px 0px #000,
+        -4px 0px 0px #000,
+        4px 0px 0px #000,
+        0px -4px 0px #000,
+        0px 4px 0px #000,
+        -2px -2px 0px #ffffff22,
+        2px 2px 0px #00000066,
+        0 0 20px rgba(6, 214, 160, 0.5);
+    
+    animation: glitchShift2 2.3s infinite linear;
+    mix-blend-mode: screen;
+    opacity: 0;
+}
+
+@keyframes glitchShift1 {
+    0%, 90% { 
+        opacity: 0; 
+        transform: translateX(0px) skewX(0deg); 
+        clip-path: inset(0 0 100% 0);
+    }
+    91% { 
+        opacity: 0.8; 
+        transform: translateX(-8px) skewX(-2deg); 
+        clip-path: inset(0 0 75% 0);
+    }
+    92% { 
+        opacity: 0.9; 
+        transform: translateX(6px) skewX(1deg); 
+        clip-path: inset(20% 0 50% 0);
+    }
+    93% { 
+        opacity: 0.7; 
+        transform: translateX(-4px) skewX(-1deg); 
+        clip-path: inset(10% 0 80% 0);
+    }
+    94% { 
+        opacity: 0.8; 
+        transform: translateX(10px) skewX(3deg); 
+        clip-path: inset(30% 0 30% 0);
+    }
+    95%, 100% { 
+        opacity: 0; 
+        transform: translateX(0px) skewX(0deg); 
+        clip-path: inset(0 0 100% 0);
+    }
+}
+
+@keyframes glitchShift2 {
+    0%, 85% { 
+        opacity: 0; 
+        transform: translateX(0px) skewX(0deg); 
+        clip-path: inset(100% 0 0 0);
+    }
+    86% { 
+        opacity: 0.7; 
+        transform: translateX(5px) skewX(1deg); 
+        clip-path: inset(60% 0 0 0);
+    }
+    87% { 
+        opacity: 0.9; 
+        transform: translateX(-7px) skewX(-2deg); 
+        clip-path: inset(40% 0 20% 0);
+    }
+    88% { 
+        opacity: 0.6; 
+        transform: translateX(3px) skewX(1deg); 
+        clip-path: inset(70% 0 10% 0);
+    }
+    89% { 
+        opacity: 0.8; 
+        transform: translateX(-9px) skewX(-3deg); 
+        clip-path: inset(20% 0 40% 0);
+    }
+    90%, 100% { 
+        opacity: 0; 
+        transform: translateX(0px) skewX(0deg); 
+        clip-path: inset(100% 0 0 0);
+    }
+}
+
+/* ホバー時の強烈なグリッチ */
+.logo .plottron-comic-glitch:hover {
+    animation: baseGlitch 0.3s infinite linear;
+}
+
+.logo .plottron-comic-glitch:hover::before {
+    animation: glitchShift1 0.15s infinite linear;
+    opacity: 0.9;
+}
+
+.logo .plottron-comic-glitch:hover::after {
+    animation: glitchShift2 0.18s infinite linear;
+    opacity: 0.9;
+}
+
+@keyframes baseGlitch {
+    0% { 
+        transform: translateX(0px) scale(1); 
+        filter: brightness(1.1) contrast(1.2) hue-rotate(0deg);
+    }
+    10% { 
+        transform: translateX(-2px) scale(1.01); 
+        filter: brightness(1.3) contrast(1.5) hue-rotate(5deg);
+    }
+    20% { 
+        transform: translateX(3px) scale(0.99); 
+        filter: brightness(0.9) contrast(1.8) hue-rotate(-3deg);
+    }
+    30% { 
+        transform: translateX(-1px) scale(1.02); 
+        filter: brightness(1.4) contrast(1.1) hue-rotate(8deg);
+    }
+    40% { 
+        transform: translateX(2px) scale(0.98); 
+        filter: brightness(1.2) contrast(1.6) hue-rotate(-5deg);
+    }
+    50% { 
+        transform: translateX(-3px) scale(1.01); 
+        filter: brightness(1.1) contrast(1.3) hue-rotate(2deg);
+    }
+    60% { 
+        transform: translateX(1px) scale(1); 
+        filter: brightness(1.5) contrast(1.4) hue-rotate(-7deg);
+    }
+    70% { 
+        transform: translateX(-2px) scale(1.02); 
+        filter: brightness(0.8) contrast(1.7) hue-rotate(6deg);
+    }
+    80% { 
+        transform: translateX(4px) scale(0.99); 
+        filter: brightness(1.3) contrast(1.2) hue-rotate(-4deg);
+    }
+    90% { 
+        transform: translateX(-1px) scale(1.01); 
+        filter: brightness(1.1) contrast(1.5) hue-rotate(3deg);
+    }
+    100% { 
+        transform: translateX(0px) scale(1); 
+        filter: brightness(1.1) contrast(1.2) hue-rotate(0deg);
+    }
+}
+
+/* カラーフリッカー効果 */
+.logo .plottron-comic-glitch {
+    animation: colorFlicker 4s infinite linear;
+}
+
+@keyframes colorFlicker {
+    0%, 85% { 
+        color: #a855f7; /* 紫 */
+    }
+    86%, 88% { 
+        color: #fbbf24; /* 黄色 */
+    }
+    89%, 91% { 
+        color: #06d6a0; /* シアン系グリーン */
+    }
+    92%, 94% { 
+        color: #f59e0b; /* オレンジ */
+    }
+    95%, 100% { 
+        color: #a855f7; /* 紫に戻る */
+    }
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.navigation a:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+    transition: all 0.3s ease;
+}
+
+/* メインコンテンツ */
+.main-content {
+    width: 100%;
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+}
+
+/* マザイクコンテナ - 横3つ並びで横幅いっぱい */
+.masonry-container {
+    columns: 3;
+    column-gap: 16px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 画像スタイル - 一つ一つを見やすく */
+.masonry-container img {
+    width: 100%;
+    display: block;
+    margin-bottom: 16px;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    break-inside: avoid;
+}
+
+.masonry-container img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .main-content {
+        padding: 0.5rem;
+    }
+    
+    .masonry-container {
+        columns: 3;
+        column-gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .main-content {
+        padding: 0.3rem;
+    }
+    
+    .masonry-container {
+        columns: 2;
+        column-gap: 10px;
+    }
+    
+    .navigation ul {
+        gap: 1rem;
+    }
+    
+    .navigation a {
+        font-size: 0.9rem;
+    }
+    
+    .logo .plottron-comic-glitch {
+        font-size: 2.4rem;
+        letter-spacing: 0.03em;
+        
+        text-shadow: 
+            -3px -3px 0px #000,
+            3px -3px 0px #000,
+            -3px 3px 0px #000,
+            3px 3px 0px #000,
+            -3px 0px 0px #000,
+            3px 0px 0px #000,
+            0px -3px 0px #000,
+            0px 3px 0px #000,
+            -1px -1px 0px #ffffff22,
+            1px 1px 0px #00000066,
+            0 0 15px rgba(168, 85, 247, 0.5);
+    }
+    
+    .logo .plottron-comic-glitch::before,
+    .logo .plottron-comic-glitch::after {
+        text-shadow: 
+            -3px -3px 0px #000,
+            3px -3px 0px #000,
+            -3px 3px 0px #000,
+            3px 3px 0px #000,
+            -3px 0px 0px #000,
+            3px 0px 0px #000,
+            0px -3px 0px #000,
+            0px 3px 0px #000,
+            -1px -1px 0px #ffffff22,
+            1px 1px 0px #00000066;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .main-content {
+        padding: 0.2rem;
+    }
+    
+    .masonry-container {
+        columns: 1;
+        column-gap: 0;
+    }
+    
+    .logo .plottron-comic-glitch {
+        font-size: 2.2rem;
+        letter-spacing: 0.02em;
+    }
+}
