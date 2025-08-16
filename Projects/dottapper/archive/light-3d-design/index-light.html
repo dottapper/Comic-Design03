@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Technologist - Light Canvas</title>
+    <link rel="stylesheet" href="styles-light.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- 3D Canvas Background -->
+    <div id="three-canvas-container">
+        <canvas id="three-canvas"></canvas>
+    </div>
+
+    <!-- ASCII Art Background -->
+    <div class="ascii-background">
+        <div class="ascii-cluster ascii-cluster-1">
+            <div class="ascii-text">
+                ◯ ◉ ◯ ◉<br>
+                ◉ ◯ ◉ ◯<br>
+                ◯ ◉ ◯ ◉
+            </div>
+        </div>
+        <div class="ascii-cluster ascii-cluster-2">
+            <div class="ascii-text">
+                ▲ ▼ ▲<br>
+                ▼ ▲ ▼<br>
+                ▲ ▼ ▲
+            </div>
+        </div>
+        <div class="ascii-cluster ascii-cluster-3">
+            <div class="ascii-text">
+                ◆ ◇ ◆<br>
+                ◇ ◆ ◇<br>
+                ◆ ◇ ◆
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-3d">
+                    <div class="logo-sphere"></div>
+                </div>
+                <span class="logo-text">portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" data-section="home">home</a></li>
+                <li><a href="#works" data-section="works">works</a></li>
+                <li><a href="#about" data-section="about">about</a></li>
+                <li><a href="#contact" data-section="contact">contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-left">
+                    <div class="floating-object floating-camera">
+                        <div class="camera-3d">
+                            <div class="camera-body"></div>
+                            <div class="camera-lens"></div>
+                        </div>
+                    </div>
+                    <div class="text-cluster">
+                        <p class="hero-greeting">exploring the</p>
+                        <h1 class="hero-title">
+                            intersection<br>
+                            <span class="title-accent">of art &</span><br>
+                            technology
+                        </h1>
+                    </div>
+                </div>
+                
+                <div class="hero-center">
+                    <div class="main-visual">
+                        <div id="main-3d-object"></div>
+                        <div class="visual-overlay">
+                            <div class="ascii-animation">
+                                <div class="ascii-frame" id="ascii-frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="floating-object floating-palette">
+                        <div class="palette-3d">
+                            <div class="color-dot color-pink"></div>
+                            <div class="color-dot color-blue"></div>
+                            <div class="color-dot color-green"></div>
+                            <div class="color-dot color-purple"></div>
+                        </div>
+                    </div>
+                    <div class="hero-description">
+                        <p>Creative technologist specializing in photogrammetry, 
+                           digital art, and immersive web experiences.</p>
+                        <div class="scroll-hint">
+                            <span>scroll to explore</span>
+                            <div class="scroll-arrow">↓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section -->
+        <section id="works" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="floating-icon">
+                        <div class="icon-3d work-icon"></div>
+                    </div>
+                    <h2 class="section-title">selected works</h2>
+                    <p class="section-subtitle">A collection of digital explorations</p>
+                </div>
+                
+                <div class="works-grid">
+                    <!-- Photogrammetry Work -->
+                    <div class="work-item photogrammetry" data-work="photogrammetry">
+                        <div class="work-visual">
+                            <div class="work-3d" id="work-3d-1"></div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3>Photogrammetry</h3>
+                                    <p>3D reconstruction from reality</p>
+                                    <span class="work-tech">WebGL / Three.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii">
+                                <span>◉ ◈ ◯</span>
+                            </div>
+                            <div class="work-text">
+                                <h4>Digital Heritage</h4>
+                                <p>Ancient architecture captured and preserved through high-precision 3D scanning</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Watercolor Art -->
+                    <div class="work-item watercolor" data-work="watercolor">
+                        <div class="work-visual">
+                            <div class="work-image">
+                                <img src="images/スクリーンショット 2025-08-16 18.21.32.png" alt="Watercolor Art" />
+                            </div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3>Digital Watercolor</h3>
+                                    <p>Traditional meets digital</p>
+                                    <span class="work-tech">Procreate / Photoshop</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii">
+                                <span>◈ ◯ ◈</span>
+                            </div>
+                            <div class="work-text">
+                                <h4>Fluid Expressions</h4>
+                                <p>Exploring color relationships and organic forms through digital watercolor techniques</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WebAR Experience -->
+                    <div class="work-item webaar" data-work="webaar">
+                        <div class="work-visual">
+                            <div class="work-3d" id="work-3d-2"></div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3>WebAR</h3>
+                                    <p>Augmented reality in browser</p>
+                                    <span class="work-tech">WebXR / A-Frame</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii">
+                                <span>◯ ◉ ◯</span>
+                            </div>
+                            <div class="work-text">
+                                <h4>Immersive Web</h4>
+                                <p>Next-generation web experiences that blend physical and digital reality</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Installation -->
+                    <div class="work-item installation" data-work="installation">
+                        <div class="work-visual">
+                            <div class="work-image">
+                                <img src="images/スクリーンショット 2025-08-16 18.21.39.png" alt="Interactive Installation" />
+                            </div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3>Interactive Art</h3>
+                                    <p>Physical + digital installation</p>
+                                    <span class="work-tech">TouchDesigner / Arduino</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii">
+                                <span>▲ ▼ ▲</span>
+                            </div>
+                            <div class="work-text">
+                                <h4>Responsive Environments</h4>
+                                <p>Interactive installations that respond to human presence and movement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section">
+            <div class="section-container">
+                <div class="about-layout">
+                    <div class="about-visual">
+                        <div class="profile-3d" id="profile-3d"></div>
+                        <div class="floating-elements">
+                            <div class="floating-skill skill-1">
+                                <span>3D</span>
+                            </div>
+                            <div class="floating-skill skill-2">
+                                <span>AR</span>
+                            </div>
+                            <div class="floating-skill skill-3">
+                                <span>UI</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-content">
+                        <h2 class="section-title">about</h2>
+                        <div class="about-text">
+                            <p>I'm a creative technologist passionate about bridging the gap between 
+                               traditional art forms and cutting-edge technology.</p>
+                            
+                            <p>My work spans photogrammetry, digital illustration, WebAR experiences, 
+                               and interactive installations. I believe in the power of technology 
+                               to enhance and preserve human creativity.</p>
+                        </div>
+                        
+                        <div class="skills-visual">
+                            <div class="skill-category">
+                                <h4>Technical</h4>
+                                <div class="skill-dots">
+                                    <span class="dot active"></span>
+                                    <span class="dot active"></span>
+                                    <span class="dot active"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                                <span class="skill-label">Three.js, WebGL, WebXR</span>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h4>Creative</h4>
+                                <div class="skill-dots">
+                                    <span class="dot active"></span>
+                                    <span class="dot active"></span>
+                                    <span class="dot active"></span>
+                                    <span class="dot active"></span>
+                                    <span class="dot"></span>
+                                </div>
+                                <span class="skill-label">Digital Art, 3D Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <div class="section-container">
+                <div class="contact-layout">
+                    <div class="contact-visual">
+                        <div class="contact-3d" id="contact-3d"></div>
+                    </div>
+                    
+                    <div class="contact-content">
+                        <h2 class="section-title">let's create</h2>
+                        <p class="contact-subtitle">Ready to explore new possibilities?</p>
+                        
+                        <div class="contact-links">
+                            <a href="https://twitter.com" class="contact-link">
+                                <div class="link-icon">◉</div>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="https://github.com" class="contact-link">
+                                <div class="link-icon">◈</div>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://zenn.dev" class="contact-link">
+                                <div class="link-icon">◯</div>
+                                <span>Zenn</span>
+                            </a>
+                            <a href="mailto:hello@example.com" class="contact-link">
+                                <div class="link-icon">▲</div>
+                                <span>Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Work Details -->
+    <div class="modal-overlay" id="work-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script-light.js"></script>
+</body>
+</html>

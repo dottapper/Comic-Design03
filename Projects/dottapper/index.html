@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Pixel Garden - Creative Technologist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ASCII背景装飾 -->
+    <div class="ascii-background">
+        <div class="ascii-element ascii-1">◉</div>
+        <div class="ascii-element ascii-2">◈</div>
+        <div class="ascii-element ascii-3">◯</div>
+        <div class="ascii-element ascii-4">▲</div>
+        <div class="ascii-element ascii-5">●</div>
+    </div>
+
+    <!-- ネオングリッド背景 -->
+    <div class="neon-grid">
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line vertical"></div>
+        <div class="grid-line vertical"></div>
+        <div class="grid-line vertical"></div>
+    </div>
+
+    <!-- メインナビゲーション -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-pixel-art">
+                    <div class="pixel-mini pink"></div>
+                    <div class="pixel-mini blue"></div>
+                    <div class="pixel-mini green"></div>
+                </div>
+                <span class="logo-text">portfolio.exe</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" data-section="home">/home</a></li>
+                <li><a href="#photogrammetry" data-section="photogrammetry">/3d</a></li>
+                <li><a href="#watercolor" data-section="watercolor">/art</a></li>
+                <li><a href="#webaar" data-section="webaar">/ar</a></li>
+                <li><a href="#tech" data-section="tech">/blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <!-- ヒーローセクション -->
+        <section id="home" class="hero-section active">
+            <div class="hero-grid">
+                <div class="hero-ascii">
+                    <div class="ascii-art">
+                        <div class="ascii-line">◉ ◈ ◯</div>
+                        <div class="ascii-line">◈ ◉ ◈</div>
+                        <div class="ascii-line">◯ ◈ ◉</div>
+                    </div>
+                    <div class="ascii-animation">
+                        <span class="neon-text">LOADING...</span>
+                        <div class="loading-bar">
+                            <div class="loading-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-content">
+                    <p class="hero-greeting">Hello, I'm a</p>
+                    <h1 class="hero-title">Creative<br>Technologist</h1>
+                    <p class="hero-description">
+                        Exploring the intersection of art and technology through 
+                        photogrammetry, watercolor illustration, and immersive web experiences.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3D</span>
+                            <span class="stat-label">Modeling</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">AR</span>
+                            <span class="stat-label">Reality</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Ideas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-pixel-art">
+                    <div class="pixel-grid">
+                        <div class="pixel-row">
+                            <div class="pixel pink active"></div>
+                            <div class="pixel blue"></div>
+                            <div class="pixel dark"></div>
+                            <div class="pixel green active"></div>
+                        </div>
+                        <div class="pixel-row">
+                            <div class="pixel blue active"></div>
+                            <div class="pixel dark"></div>
+                            <div class="pixel pink"></div>
+                            <div class="pixel blue"></div>
+                        </div>
+                        <div class="pixel-row">
+                            <div class="pixel dark"></div>
+                            <div class="pixel green active"></div>
+                            <div class="pixel blue active"></div>
+                            <div class="pixel dark"></div>
+                        </div>
+                        <div class="pixel-row">
+                            <div class="pixel green"></div>
+                            <div class="pixel pink active"></div>
+                            <div class="pixel dark"></div>
+                            <div class="pixel green"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-arrow">↓</div>
+                <span>explore_work.exe</span>
+            </div>
+        </section>
+
+        <!-- フォトグラメトリーセクション -->
+        <section id="photogrammetry" class="content-section">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span class="badge-icon">◉</span>
+                    <span class="badge-text">3D_RECONSTRUCTION</span>
+                </div>
+                <h2 class="section-title">Photogrammetry Works</h2>
+                <p class="section-subtitle">Reality → Digital → Art</p>
+            </div>
+            
+            <div class="project-grid">
+                <div class="project-card" data-type="3d">
+                    <div class="card-header">
+                        <span class="project-id">[001]</span>
+                        <span class="project-status active">ACTIVE</span>
+                    </div>
+                    <div class="card-preview">
+                        <div class="preview-content">
+                            <div class="pixel-placeholder">
+                                <div class="pixel-art-small">
+                                    <div class="pixel-mini blue"></div>
+                                    <div class="pixel-mini pink"></div>
+                                    <div class="pixel-mini green"></div>
+                                </div>
+                            </div>
+                            <span class="preview-label">3D Model</span>
+                        </div>
+                        <div class="card-overlay">
+                            <span class="overlay-text">VIEW_PROJECT.exe</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>古建築復元プロジェクト</h3>
+                        <p>高精度フォトグラメトリーによる文化遺産の3Dデジタル化</p>
+                        <div class="tech-tags">
+                            <span class="tag">Photogrammetry</span>
+                            <span class="tag">3D Modeling</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="3d">
+                    <div class="card-header">
+                        <span class="project-id">[002]</span>
+                        <span class="project-status">COMPLETE</span>
+                    </div>
+                    <div class="card-preview">
+                        <div class="preview-content">
+                            <div class="pixel-placeholder">
+                                <div class="pixel-art-small">
+                                    <div class="pixel-mini green"></div>
+                                    <div class="pixel-mini blue"></div>
+                                    <div class="pixel-mini pink"></div>
+                                </div>
+                            </div>
+                            <span class="preview-label">Organic Forms</span>
+                        </div>
+                        <div class="card-overlay">
+                            <span class="overlay-text">VIEW_PROJECT.exe</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>自然物スキャンシリーズ</h3>
+                        <p>オーガニック形状のキャプチャとアート表現</p>
+                        <div class="tech-tags">
+                            <span class="tag">Nature Scanning</span>
+                            <span class="tag">Art Direction</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-type="3d">
+                    <div class="card-header">
+                        <span class="project-id">[003]</span>
+                        <span class="project-status">WIP</span>
+                    </div>
+                    <div class="card-preview">
+                        <div class="preview-content">
+                            <div class="pixel-placeholder">
+                                <div class="pixel-art-small">
+                                    <div class="pixel-mini pink"></div>
+                                    <div class="pixel-mini green"></div>
+                                    <div class="pixel-mini blue"></div>
+                                </div>
+                            </div>
+                            <span class="preview-label">Industrial Design</span>
+                        </div>
+                        <div class="card-overlay">
+                            <span class="overlay-text">VIEW_PROJECT.exe</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>工業製品スキャン</h3>
+                        <p>精密測定データとデザイン検証</p>
+                        <div class="tech-tags">
+                            <span class="tag">Industrial</span>
+                            <span class="tag">Precision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 水彩イラストセクション -->
+        <section id="watercolor" class="content-section">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span class="badge-icon">◈</span>
+                    <span class="badge-text">DIGITAL_PAINTING</span>
+                </div>
+                <h2 class="section-title">Watercolor Illustrations</h2>
+                <p class="section-subtitle">Traditional meets Digital</p>
+            </div>
+            
+            <div class="art-gallery">
+                <div class="gallery-item watercolor" data-type="watercolor">
+                    <div class="art-frame">
+                        <div class="art-preview watercolor-1">
+                            <div class="watercolor-effect">
+                                <div class="color-splash pink"></div>
+                                <div class="color-splash blue"></div>
+                                <div class="color-splash green"></div>
+                            </div>
+                        </div>
+                        <div class="art-overlay">
+                            <span class="overlay-text">OPEN_GALLERY.exe</span>
+                        </div>
+                    </div>
+                    <div class="art-info">
+                        <h3>デジタル水彩シリーズ</h3>
+                        <p>伝統技法とデジタルツールの融合</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item watercolor" data-type="watercolor">
+                    <div class="art-frame">
+                        <div class="art-preview watercolor-2">
+                            <div class="watercolor-effect">
+                                <div class="color-splash green"></div>
+                                <div class="color-splash pink"></div>
+                                <div class="color-splash blue"></div>
+                            </div>
+                        </div>
+                        <div class="art-overlay">
+                            <span class="overlay-text">OPEN_GALLERY.exe</span>
+                        </div>
+                    </div>
+                    <div class="art-info">
+                        <h3>抽象表現作品群</h3>
+                        <p>色彩とフォルムの実験的アプローチ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WebARセクション -->
+        <section id="webaar" class="content-section">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span class="badge-icon">◯</span>
+                    <span class="badge-text">AUGMENTED_REALITY</span>
+                </div>
+                <h2 class="section-title">WebAR Experience</h2>
+                <p class="section-subtitle">Future web interactions</p>
+            </div>
+            
+            <div class="ar-showcase">
+                <div class="ar-demo">
+                    <div class="ar-screen">
+                        <div class="ar-interface">
+                            <div class="ar-indicator active"></div>
+                            <span class="ar-status">AR_READY</span>
+                        </div>
+                        <div class="ar-content">
+                            <div class="ar-object">
+                                <div class="ar-cube">
+                                    <div class="cube-face front pink"></div>
+                                    <div class="cube-face back blue"></div>
+                                    <div class="cube-face right green"></div>
+                                    <div class="cube-face left pink"></div>
+                                    <div class="cube-face top blue"></div>
+                                    <div class="cube-face bottom green"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ar-controls">
+                        <button class="btn primary">LAUNCH_AR.exe</button>
+                        <button class="btn secondary">learn_more.txt</button>
+                    </div>
+                </div>
+                
+                <div class="ar-description">
+                    <h3>次世代ウェブ体験</h3>
+                    <p>
+                        ブラウザ上で動作する拡張現実技術。3Dモデル、インタラクティブな体験、
+                        そして新しい表現の可能性を探求しています。
+                    </p>
+                    <div class="tech-stack-ar">
+                        <div class="tech-item">
+                            <span class="tech-name">WebXR API</span>
+                            <div class="tech-bar">
+                                <div class="tech-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">Three.js</span>
+                            <div class="tech-bar">
+                                <div class="tech-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">WASM</span>
+                            <div class="tech-bar">
+                                <div class="tech-progress" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技術ブログセクション -->
+        <section id="tech" class="content-section">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span class="badge-icon">▲</span>
+                    <span class="badge-text">KNOWLEDGE_BASE</span>
+                </div>
+                <h2 class="section-title">Technical Articles</h2>
+                <p class="section-subtitle">Sharing insights and learnings</p>
+            </div>
+            
+            <div class="blog-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="btn-circle red"></div>
+                        <div class="btn-circle yellow"></div>
+                        <div class="btn-circle green"></div>
+                    </div>
+                    <span class="terminal-title">knowledge_links.sh</span>
+                </div>
+                <div class="terminal-content">
+                    <a href="https://zenn.dev" target="_blank" class="terminal-link">
+                        <span class="command-prompt">$</span>
+                        <span class="command">open</span>
+                        <span class="command-arg">zenn.dev</span>
+                        <span class="command-desc"># Technical articles</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="#" target="_blank" class="terminal-link">
+                        <span class="command-prompt">$</span>
+                        <span class="command">open</span>
+                        <span class="command-arg">github.com</span>
+                        <span class="command-desc"># Code repositories</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="#" target="_blank" class="terminal-link">
+                        <span class="command-prompt">$</span>
+                        <span class="command">open</span>
+                        <span class="command-arg">personal-blog</span>
+                        <span class="command-desc"># Creative process</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ピクセルパーティクル -->
+    <div class="pixel-particles"></div>
+
+    <!-- モーダル -->
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">PROJECT_VIEWER.exe</span>
+                <button class="modal-close">×</button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

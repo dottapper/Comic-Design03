@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Technologist - Portfolio</title>
+    <link rel="stylesheet" href="styles-white.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Grid Background -->
+    <div class="grid-background">
+        <div class="grid-line horizontal" style="top: 20%;"></div>
+        <div class="grid-line horizontal" style="top: 40%;"></div>
+        <div class="grid-line horizontal" style="top: 60%;"></div>
+        <div class="grid-line horizontal" style="top: 80%;"></div>
+        <div class="grid-line vertical" style="left: 20%;"></div>
+        <div class="grid-line vertical" style="left: 40%;"></div>
+        <div class="grid-line vertical" style="left: 60%;"></div>
+        <div class="grid-line vertical" style="left: 80%;"></div>
+    </div>
+
+    <!-- ASCII Background Pattern -->
+    <div class="ascii-background">
+        <!-- Top Left Cluster -->
+        <div class="ascii-cluster cluster-1">
+            <pre class="ascii-art">
+████████████████████████████████████████████████████████████████████████████████
+██                                                                            ██
+██  ◉ ◈ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈  ██
+██  ◈ ◯ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯  ██
+██  ◯ ◉ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉  ██
+██  ◉ ◈ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈ ◉ ◯ ◈  ██
+██                                                                            ██
+████████████████████████████████████████████████████████████████████████████████
+            </pre>
+        </div>
+        
+        <!-- Top Right Cluster -->
+        <div class="ascii-cluster cluster-2">
+            <pre class="ascii-art">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠒⠒⠒⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            </pre>
+        </div>
+        
+        <!-- Bottom Left Cluster -->
+        <div class="ascii-cluster cluster-3">
+            <pre class="ascii-art">
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░  ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+            </pre>
+        </div>
+        
+        <!-- Bottom Right Cluster -->
+        <div class="ascii-cluster cluster-4">
+            <pre class="ascii-art">
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                    ░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░
+                    ░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                    ░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░
+                    ░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░██░░
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+            </pre>
+        </div>
+        
+        <!-- Center Object Clusters -->
+        <div class="ascii-object object-1">
+            <pre class="ascii-art">
+    ╭─────────────────────────╮
+    │  ◉ ◈ ◯ ◈ ◉ ◯ ◈ ◉ ◯  │
+    │  ◈ ◯ ◉ ◯ ◈ ◉ ◯ ◈ ◉  │
+    │  ◯ ◉ ◈ ◉ ◯ ◈ ◉ ◯ ◈  │
+    │  ◉ ◈ ◯ ◈ ◉ ◯ ◈ ◉ ◯  │
+    │  ◈ ◯ ◉ ◯ ◈ ◉ ◯ ◈ ◉  │
+    ╰─────────────────────────╯
+            </pre>
+        </div>
+        
+        <div class="ascii-object object-2">
+            <pre class="ascii-art">
+         ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+         ▓               ▓
+         ▓  ▲ ▼ ▲ ▼ ▲  ▓
+         ▓  ▼ ▲ ▼ ▲ ▼  ▓
+         ▓  ▲ ▼ ▲ ▼ ▲  ▓
+         ▓  ▼ ▲ ▼ ▲ ▼  ▓
+         ▓               ▓
+         ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            </pre>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">HELLO<span class="logo-accent">WORLD</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">WORK</a></li>
+                <li><a href="#services" class="nav-link">SERVICES</a></li>
+                <li><a href="#info" class="nav-link">INFO</a></li>
+                <li><a href="#shop" class="nav-link">SHOP</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="client-badge">
+                <span class="badge-text">Clients featured in:</span>
+                <span class="badge-logo">dwell</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-tagline">
+                        <h1 class="tagline-primary">Small enough to listen,</h1>
+                        <h1 class="tagline-secondary">bold enough to lead</h1>
+                    </div>
+                    
+                    <div class="hero-description">
+                        <p>We design digital spaces that captivate. Agile and hands-on, we think big
+                        — crafting experiences that feel effortless yet unforgettable. No bloated
+                        budgets, no red tape. Just smart, scalable solutions built to grow with
+                        you.</p>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <button class="cta-button">EXPLORE</button>
+                    </div>
+                </div>
+                
+                <!-- Central ASCII Art -->
+                <div class="hero-ascii">
+                    <pre class="hero-ascii-art">
+                    
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░██████████████████████████████████████████████████████████████████████░░░
+    ░░░██                                                                  ██░░░
+    ░░░██    ◉ ◈ ◯ ◈ ◉    ◯ ◈ ◉ ◯ ◈    ◉ ◯ ◈ ◉ ◯    ◈ ◉ ◯ ◈ ◉    ██░░░
+    ░░░██    ◈ ◯ ◉ ◯ ◈    ◉ ◯ ◈ ◉ ◯    ◈ ◉ ◯ ◈ ◉    ◯ ◈ ◉ ◯ ◈    ██░░░
+    ░░░██                                                                  ██░░░
+    ░░░██    ┌─────────────────────────────────────────────────────────┐   ██░░░
+    ░░░██    │                                                         │   ██░░░
+    ░░░██    │          CREATIVE × TECHNOLOGY                          │   ██░░░
+    ░░░██    │          intersection of art and code                   │   ██░░░
+    ░░░██    │                                                         │   ██░░░
+    ░░░██    └─────────────────────────────────────────────────────────┘   ██░░░
+    ░░░██                                                                  ██░░░
+    ░░░██    ◯ ◉ ◈ ◉ ◯    ◈ ◉ ◯ ◈ ◉    ◯ ◈ ◉ ◯ ◈    ◉ ◯ ◈ ◉ ◯    ██░░░
+    ░░░██    ◉ ◈ ◯ ◈ ◉    ◯ ◈ ◉ ◯ ◈    ◉ ◯ ◈ ◉ ◯    ◈ ◉ ◯ ◈ ◉    ██░░░
+    ░░░██                                                                  ██░░░
+    ░░░██████████████████████████████████████████████████████████████████████░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                    
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="work-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Selected Work</h2>
+                    <p class="section-subtitle">Digital experiences that matter</p>
+                </div>
+                
+                <div class="work-grid">
+                    <!-- Project 1 -->
+                    <article class="work-item" data-work="photogrammetry">
+                        <div class="work-header">
+                            <span class="project-id">[001]</span>
+                            <span class="project-status active">ACTIVE</span>
+                        </div>
+                        <div class="work-visual">
+                            <div class="work-image">
+                                <img src="images/スクリーンショット 2025-08-16 18.21.32.png" alt="Photogrammetry Project" />
+                            </div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3 class="work-title">3D Heritage Documentation</h3>
+                                    <p class="work-description">Advanced photogrammetry techniques for cultural preservation</p>
+                                    <div class="work-tags">
+                                        <span class="work-tag">Photogrammetry</span>
+                                        <span class="work-tag">WebGL</span>
+                                        <span class="work-tag">Cultural Heritage</span>
+                                    </div>
+                                    <button class="view-project-btn">VIEW_PROJECT.exe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii-small">
+                                <pre>◉ ◈ ◯
+◈ ◯ ◉
+◯ ◉ ◈</pre>
+                            </div>
+                            <div class="work-meta">
+                                <h4>古建築デジタル保存</h4>
+                                <p>高精度3Dスキャニング技術による文化遺産のデジタル化</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="work-item" data-work="installation">
+                        <div class="work-header">
+                            <span class="project-id">[002]</span>
+                            <span class="project-status complete">COMPLETE</span>
+                        </div>
+                        <div class="work-visual">
+                            <div class="work-image">
+                                <img src="images/スクリーンショット 2025-08-16 18.21.39.png" alt="Interactive Installation" />
+                            </div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3 class="work-title">Interactive Environments</h3>
+                                    <p class="work-description">Responsive installations bridging physical and digital</p>
+                                    <div class="work-tags">
+                                        <span class="work-tag">TouchDesigner</span>
+                                        <span class="work-tag">Arduino</span>
+                                        <span class="work-tag">Interactive Art</span>
+                                    </div>
+                                    <button class="view-project-btn">VIEW_PROJECT.exe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii-small">
+                                <pre>▲ ▼ ▲
+▼ ▲ ▼
+▲ ▼ ▲</pre>
+                            </div>
+                            <div class="work-meta">
+                                <h4>レスポンシブ環境</h4>
+                                <p>人の動きに反応するインタラクティブインスタレーション</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="work-item" data-work="webaar">
+                        <div class="work-header">
+                            <span class="project-id">[003]</span>
+                            <span class="project-status wip">WIP</span>
+                        </div>
+                        <div class="work-visual">
+                            <div class="ascii-placeholder">
+                                <pre class="ascii-art">
+    ╔═══════════════════════════════╗
+    ║                               ║
+    ║    ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉    ║
+    ║    ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯    ║
+    ║                               ║
+    ║         WebAR Portal          ║
+    ║                               ║
+    ║    ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉    ║
+    ║    ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯ ◉ ◯    ║
+    ║                               ║
+    ╚═══════════════════════════════╝
+                </pre>
+                            </div>
+                            <div class="work-overlay">
+                                <div class="work-info">
+                                    <h3 class="work-title">WebAR Experience</h3>
+                                    <p class="work-description">Browser-based augmented reality applications</p>
+                                    <div class="work-tags">
+                                        <span class="work-tag">WebXR</span>
+                                        <span class="work-tag">Three.js</span>
+                                        <span class="work-tag">AR Experience</span>
+                                    </div>
+                                    <button class="view-project-btn">VIEW_PROJECT.exe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-details">
+                            <div class="work-ascii-small">
+                                <pre>◯ ◉ ◯
+◉ ◯ ◉
+◯ ◉ ◯</pre>
+                            </div>
+                            <div class="work-meta">
+                                <h4>ブラウザAR体験</h4>
+                                <p>次世代ウェブ拡張現実アプリケーション</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <div class="about-layout">
+                    <div class="about-content">
+                        <h2 class="section-title">About</h2>
+                        <div class="about-text">
+                            <p>We're a creative technologist studio at the intersection of art and code. 
+                               Our work spans digital preservation, interactive installations, and 
+                               immersive web experiences.</p>
+                            
+                            <p>From photogrammetry documentation to augmented reality applications, 
+                               we believe technology should enhance human creativity, not replace it.</p>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span class="contact-label">EMAIL</span>
+                                <span class="contact-value">hello@portfolio.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">TWITTER</span>
+                                <span class="contact-value">@portfolio</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">GITHUB</span>
+                                <span class="contact-value">github.com/portfolio</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-ascii">
+                        <pre class="ascii-art">
+████████████████████████████████████████████████████████████████████
+██                                                                ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░██████░░██████░░██████░░██████░░██████░░██████░░██████░░░░  ██
+██  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ██
+██                                                                ██
+████████████████████████████████████████████████████████████████████
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-ascii">
+                <pre class="ascii-art">
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ Creative Technologist © 2024 — Building digital experiences that inspire ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                </pre>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Modal System -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title-bar">
+                    <span class="modal-title">PROJECT_VIEWER.exe</span>
+                    <div class="window-controls">
+                        <button class="window-btn minimize">−</button>
+                        <button class="window-btn maximize">□</button>
+                        <button class="window-btn close" id="modal-close">×</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-sidebar">
+                    <div class="project-nav">
+                        <div class="nav-item active" data-tab="overview">
+                            <span class="nav-icon">◉</span>
+                            <span class="nav-label">Overview</span>
+                        </div>
+                        <div class="nav-item" data-tab="details">
+                            <span class="nav-icon">◈</span>
+                            <span class="nav-label">Details</span>
+                        </div>
+                        <div class="nav-item" data-tab="tech">
+                            <span class="nav-icon">◯</span>
+                            <span class="nav-label">Tech Stack</span>
+                        </div>
+                        <div class="nav-item" data-tab="gallery">
+                            <span class="nav-icon">▲</span>
+                            <span class="nav-label">Gallery</span>
+                        </div>
+                    </div>
+                    <div class="modal-ascii-decoration">
+                        <pre class="ascii-art">
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ PROJECT DATA     ██
+██                  ██
+██  ◉ Status: OK    ██
+██  ◈ Build: v2.1   ██
+██  ◯ Type: WebApp  ██
+██                  ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                        </pre>
+                    </div>
+                </div>
+                <div class="modal-main">
+                    <div class="tab-content active" id="overview-tab">
+                        <div class="project-hero">
+                            <div class="project-image-container">
+                                <img id="modal-project-image" src="" alt="Project Image" />
+                                <div class="image-overlay">
+                                    <button class="preview-btn">FULL_PREVIEW.exe</button>
+                                </div>
+                            </div>
+                            <div class="project-summary">
+                                <h2 id="modal-project-title">Project Title</h2>
+                                <p id="modal-project-description">Project description will appear here.</p>
+                                <div class="project-meta">
+                                    <div class="meta-item">
+                                        <span class="meta-label">PROJECT_ID:</span>
+                                        <span class="meta-value" id="modal-project-id">[001]</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">STATUS:</span>
+                                        <span class="meta-value status" id="modal-project-status">ACTIVE</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">YEAR:</span>
+                                        <span class="meta-value">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="details-tab">
+                        <div class="details-content">
+                            <h3>Project Details</h3>
+                            <div class="details-grid">
+                                <div class="detail-section">
+                                    <h4>概要</h4>
+                                    <p id="modal-detailed-description">詳細な説明がここに表示されます。</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>アプローチ</h4>
+                                    <p>このプロジェクトでは最新の技術と創造的なアプローチを組み合わせ、ユーザー体験を重視した設計を行いました。</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>成果</h4>
+                                    <p>技術的な挑戦と芸術的な表現の融合により、新しい可能性を切り開きました。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="tech-tab">
+                        <div class="tech-content">
+                            <h3>Technology Stack</h3>
+                            <div class="tech-stack-grid">
+                                <div class="tech-category">
+                                    <h4>Frontend</h4>
+                                    <div class="tech-list" id="modal-frontend-tech">
+                                        <span class="tech-item">HTML5</span>
+                                        <span class="tech-item">CSS3</span>
+                                        <span class="tech-item">JavaScript</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h4>Libraries & Frameworks</h4>
+                                    <div class="tech-list" id="modal-frameworks-tech">
+                                        <span class="tech-item">Three.js</span>
+                                        <span class="tech-item">WebGL</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h4>Tools & Software</h4>
+                                    <div class="tech-list" id="modal-tools-tech">
+                                        <span class="tech-item">Blender</span>
+                                        <span class="tech-item">Photoshop</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-output">
+                                <div class="terminal-header">
+                                    <span class="terminal-title">build_log.txt</span>
+                                </div>
+                                <div class="terminal-content">
+                                    <pre id="modal-build-log">
+> npm run build
+> Building project...
+> ✓ Compiled successfully
+> ✓ Assets optimized
+> ✓ Build complete in 2.4s
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gallery-tab">
+                        <div class="gallery-content">
+                            <h3>Project Gallery</h3>
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <pre class="ascii-art">
+    ╔══════════════════╗
+    ║                  ║
+    ║   ◉ ◈ ◯ ◈ ◉   ║
+    ║   ◈ ◯ ◉ ◯ ◈   ║
+    ║   ◯ ◉ ◈ ◉ ◯   ║
+    ║                  ║
+    ║   IMAGE_001.jpg  ║
+    ║                  ║
+    ╚══════════════════╝
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <pre class="ascii-art">
+    ╔══════════════════╗
+    ║                  ║
+    ║   ▲ ▼ ▲ ▼ ▲   ║
+    ║   ▼ ▲ ▼ ▲ ▼   ║
+    ║   ▲ ▼ ▲ ▼ ▲   ║
+    ║                  ║
+    ║   IMAGE_002.jpg  ║
+    ║                  ║
+    ╚══════════════════╝
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <pre class="ascii-art">
+    ╔══════════════════╗
+    ║                  ║
+    ║   ◯ ◉ ◯ ◉ ◯   ║
+    ║   ◉ ◯ ◉ ◯ ◉   ║
+    ║   ◯ ◉ ◯ ◉ ◯   ║
+    ║                  ║
+    ║   IMAGE_003.jpg  ║
+    ║                  ║
+    ╚══════════════════╝
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="footer-info">
+                    <span class="footer-text">Use TAB to navigate • ESC to close</span>
+                </div>
+                <div class="footer-actions">
+                    <button class="footer-btn secondary">CLOSE.exe</button>
+                    <button class="footer-btn primary">VISIT_LIVE.exe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-white.js"></script>
+</body>
+</html>
